@@ -195,14 +195,21 @@ h1 {
   margin: 0 16px 0.67em;
 }
 h2,
+h3,
 #respond {
   margin: 1.34em 16px 0.67em;
 }
 
 /* Forms */
 div.eviratec-web.eviratec-form {
-  border: 1px solid rgba(0,0,0,0.12);
   padding: 16px;
+}
+.create-form-wrapper {
+  padding-top: 16px;
+  background-color: rgba(0,0,0,0.12);
+}
+.create-form-wrapper h3 {
+  margin-top: 0;
 }
 div.eviratec-web.eviratec-form p.form-title {
   margin: 0;

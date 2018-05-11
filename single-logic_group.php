@@ -8,15 +8,6 @@
 
     <h1>Logic Group &gt; <?php echo get_field( 'logic_group_name', get_the_ID() ); ?></h1>
 
-    <h2>Create Model</h2>
-
-    <form>
-      <?php get_template_part( 'parts/forms/create-model' ); ?>
-      <input name="ModelLogicGroupID"
-        type="hidden"
-        value="<?php the_ID(); ?>">
-    </form>
-
     <?php
     $logic_group_id = get_the_ID();
     $models = DataStudioQuery::getModelsByLogicGroup( $logic_group_id );
@@ -38,14 +29,18 @@
     <p>You haven't added any models to this logic group.</p>
     <?php endif; ?>
 
-    <h2>Create Query</h2>
+    <div class="create-form-wrapper">
 
-    <form>
-      <?php get_template_part( 'parts/forms/create-query' ); ?>
-      <input name="QueryLogicGroupID"
-        type="hidden"
-        value="<?php the_ID(); ?>">
-    </form>
+      <h3>Create Model</h3>
+
+      <form>
+        <?php get_template_part( 'parts/forms/create-model' ); ?>
+        <input name="ModelLogicGroupID"
+          type="hidden"
+          value="<?php the_ID(); ?>">
+      </form>
+
+    </div>
 
     <?php
     $logic_group_id = get_the_ID();
@@ -68,14 +63,18 @@
     <p>You haven't added any queries to this logic group.</p>
     <?php endif; ?>
 
-    <h2>Create Command</h2>
+    <div class="create-form-wrapper">
 
-    <form>
-      <?php get_template_part( 'parts/forms/create-command' ); ?>
-      <input name="CommandLogicGroupID"
-        type="hidden"
-        value="<?php the_ID(); ?>">
-    </form>
+      <h3>Create Query</h3>
+
+      <form>
+        <?php get_template_part( 'parts/forms/create-query' ); ?>
+        <input name="QueryLogicGroupID"
+          type="hidden"
+          value="<?php the_ID(); ?>">
+      </form>
+
+    </div>
 
     <?php
     $logic_group_id = get_the_ID();
@@ -97,6 +96,19 @@
     <?php else : ?>
     <p>You haven't added any commands to this logic group.</p>
     <?php endif; ?>
+
+    <div class="create-form-wrapper">
+
+      <h3>Create Command</h3>
+
+      <form>
+        <?php get_template_part( 'parts/forms/create-command' ); ?>
+        <input name="CommandLogicGroupID"
+          type="hidden"
+          value="<?php the_ID(); ?>">
+      </form>
+
+    </div>
 
 
     <!-- article -->
