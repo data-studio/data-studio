@@ -15,12 +15,60 @@
  * PERFORMANCE OF THIS SOFTWARE.
  */
 
-function data_studio_rewrite () {
-  add_rewrite_rule( '^app/([0-9]+)/?', 'index.php?page_id=$matches[1]', 'top' );
-  add_rewrite_rule( '^logic-group/([0-9]+)/?', 'index.php?page_id=$matches[1]', 'top' );
-  add_rewrite_rule( '^model/([0-9]+)/?', 'index.php?page_id=$matches[1]', 'top' );
-  add_rewrite_rule( '^attribute/([0-9]+)/?', 'index.php?page_id=$matches[1]', 'top' );
-  add_rewrite_rule( '^command/([0-9]+)/?', 'index.php?page_id=$matches[1]', 'top' );
-  add_rewrite_rule( '^query/([0-9]+)/?', 'index.php?page_id=$matches[1]', 'top' );
-}
 add_action( 'init', 'data_studio_rewrite' );
+
+function data_studio_rewrite () {
+  add_rewrite_rule(
+    '^app/(.+)$',
+    'index.php?post_type=app&p=$matches[1]',
+    'top'
+  );
+
+  add_rewrite_rule(
+    '^logic-group/(.+)/models',
+    'index.php?post_type=model&model_logic_group_id=$matches[1]',
+    'top'
+  );
+
+  add_rewrite_rule(
+    '^logic-group/(.+)/commands$',
+    'index.php?post_type=command&command_logic_group_id=$matches[1]',
+    'top'
+  );
+
+  add_rewrite_rule(
+    '^logic-group/(.+)/queries',
+    'index.php?post_type=query&query_logic_group_id=$matches[1]',
+    'top'
+  );
+
+  add_rewrite_rule(
+    '^logic-group/(.+)$',
+    'index.php?post_type=logic_group&p=$matches[1]',
+    'top'
+  );
+
+  add_rewrite_rule(
+    '^model/(.+)$',
+    'index.php?post_type=model&p=$matches[1]',
+    'top'
+  );
+
+  add_rewrite_rule(
+    '^attribute/(.+)$',
+    'index.php?post_type=attribute&p=$matches[1]',
+    'top'
+  );
+
+  add_rewrite_rule(
+    '^command/(.+)$',
+    'index.php?post_type=command&p=$matches[1]',
+    'top'
+  );
+
+  add_rewrite_rule(
+    '^query/(.+)$',
+    'index.php?post_type=query&p=$matches[1]',
+    'top'
+  );
+}
