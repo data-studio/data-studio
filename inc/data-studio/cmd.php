@@ -20,13 +20,17 @@ class DataStudioCmd {
 
   }
 
+  public static function generateUniqid () {
+    return uniqid() . bin2hex( random_bytes( 8 ) ) . wp_get_current_user()->ID;
+  }
+
   public static function createApp ( $name ) {
     $app_id = null;
 
     $app_id = wp_insert_post(array(
       'post_author'  => wp_get_current_user()->ID,
       'post_content' => $name,
-      'post_title'   => $name,
+      'post_title'   => DataStudioCmd::generateUniqid(),
       'post_status'  => 'publish',
       'post_type'    => 'app',
     ));
@@ -44,7 +48,7 @@ class DataStudioCmd {
     $logic_group_id = wp_insert_post(array(
       'post_author'  => wp_get_current_user()->ID,
       'post_content' => $name,
-      'post_title'   => $name,
+      'post_title'   => DataStudioCmd::generateUniqid(),
       'post_status'  => 'publish',
       'post_type'    => 'logic_group',
     ));
@@ -66,7 +70,7 @@ class DataStudioCmd {
     $model_id = wp_insert_post(array(
       'post_author'  => wp_get_current_user()->ID,
       'post_content' => $name,
-      'post_title'   => $name,
+      'post_title'   => DataStudioCmd::generateUniqid(),
       'post_status'  => 'publish',
       'post_type'    => 'model',
     ));
@@ -75,9 +79,7 @@ class DataStudioCmd {
 
     update_field( 'model_name', $name, $model_id );
 
-    update_field( 'model_count_models', '0', $model_id );
-    update_field( 'model_count_commands', '0', $model_id );
-    update_field( 'model_count_queries', '0', $model_id );
+    update_field( 'model_count_attributes', '0', $model_id );
 
     return $model_id;
   }
@@ -88,7 +90,7 @@ class DataStudioCmd {
     $attribute_id = wp_insert_post(array(
       'post_author'  => wp_get_current_user()->ID,
       'post_content' => $name,
-      'post_title'   => $name,
+      'post_title'   => DataStudioCmd::generateUniqid(),
       'post_status'  => 'publish',
       'post_type'    => 'attribute',
     ));
@@ -106,7 +108,7 @@ class DataStudioCmd {
     $command_id = wp_insert_post(array(
       'post_author'  => wp_get_current_user()->ID,
       'post_content' => $name,
-      'post_title'   => $name,
+      'post_title'   => DataStudioCmd::generateUniqid(),
       'post_status'  => 'publish',
       'post_type'    => 'command',
     ));
@@ -124,7 +126,7 @@ class DataStudioCmd {
     $query_id = wp_insert_post(array(
       'post_author'  => wp_get_current_user()->ID,
       'post_content' => $name,
-      'post_title'   => $name,
+      'post_title'   => DataStudioCmd::generateUniqid(),
       'post_status'  => 'publish',
       'post_type'    => 'query',
     ));
