@@ -216,6 +216,19 @@ div.eviratec-web.eviratec-form p.form-title {
   font-size: 1.4em;
   font-weight: 300;
 }
+.back-button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 16px;
+}
+a#BackButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4px 12px 4px 0;
+  font-size: 1.3em;
+}
 
 /* */
 .content-cards {

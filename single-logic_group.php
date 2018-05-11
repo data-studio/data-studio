@@ -6,7 +6,22 @@
 
   <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
-    <h1>Logic Group &gt; <?php echo get_field( 'logic_group_name', get_the_ID() ); ?></h1>
+    <?php $back_id = (int) get_field( 'logic_group_app_id', get_the_ID() )->ID; ?>
+    <div class="back-button-container">
+      <a id="BackButton"
+        href="<?php the_permalink( $back_id ); ?>"
+        title="<?php echo get_field( 'app_name', $back_id ); ?>">
+        <span class="material-icons">
+          chevron_left
+        </span>
+        <span>
+          <?php echo get_field( 'app_name', $back_id ); ?>
+          App
+        </span>
+      </a>
+    </div>
+
+    <h1><?php echo get_field( 'logic_group_name', get_the_ID() ); ?> Logic</h1>
 
     <?php
     $logic_group_id = get_the_ID();
@@ -14,6 +29,19 @@
     ?>
 
     <h2>Models</h2>
+
+    <div class="create-form-wrapper">
+
+      <h3>Create Model</h3>
+
+      <form>
+        <?php get_template_part( 'parts/forms/create-model' ); ?>
+        <input name="ModelLogicGroupID"
+          type="hidden"
+          value="<?php the_ID(); ?>">
+      </form>
+
+    </div>
 
     <?php if ($models->have_posts()) : ?>
     <div class="content-cards">
@@ -29,25 +57,25 @@
     <p>You haven't added any models to this logic group.</p>
     <?php endif; ?>
 
-    <div class="create-form-wrapper">
-
-      <h3>Create Model</h3>
-
-      <form>
-        <?php get_template_part( 'parts/forms/create-model' ); ?>
-        <input name="ModelLogicGroupID"
-          type="hidden"
-          value="<?php the_ID(); ?>">
-      </form>
-
-    </div>
-
     <?php
     $logic_group_id = get_the_ID();
     $queries = DataStudioQuery::getQueriesByLogicGroup( $logic_group_id );
     ?>
 
     <h2>Queries</h2>
+
+    <div class="create-form-wrapper">
+
+      <h3>Create Query</h3>
+
+      <form>
+        <?php get_template_part( 'parts/forms/create-query' ); ?>
+        <input name="QueryLogicGroupID"
+          type="hidden"
+          value="<?php the_ID(); ?>">
+      </form>
+
+    </div>
 
     <?php if ($queries->have_posts()) : ?>
     <div class="content-cards">
@@ -63,25 +91,25 @@
     <p>You haven't added any queries to this logic group.</p>
     <?php endif; ?>
 
-    <div class="create-form-wrapper">
-
-      <h3>Create Query</h3>
-
-      <form>
-        <?php get_template_part( 'parts/forms/create-query' ); ?>
-        <input name="QueryLogicGroupID"
-          type="hidden"
-          value="<?php the_ID(); ?>">
-      </form>
-
-    </div>
-
     <?php
     $logic_group_id = get_the_ID();
     $commands = DataStudioQuery::getCommandsByLogicGroup( $logic_group_id );
     ?>
 
     <h2>Commands</h2>
+
+    <div class="create-form-wrapper">
+
+      <h3>Create Command</h3>
+
+      <form>
+        <?php get_template_part( 'parts/forms/create-command' ); ?>
+        <input name="CommandLogicGroupID"
+          type="hidden"
+          value="<?php the_ID(); ?>">
+      </form>
+
+    </div>
 
     <?php if ($commands->have_posts()) : ?>
     <div class="content-cards">
@@ -96,19 +124,6 @@
     <?php else : ?>
     <p>You haven't added any commands to this logic group.</p>
     <?php endif; ?>
-
-    <div class="create-form-wrapper">
-
-      <h3>Create Command</h3>
-
-      <form>
-        <?php get_template_part( 'parts/forms/create-command' ); ?>
-        <input name="CommandLogicGroupID"
-          type="hidden"
-          value="<?php the_ID(); ?>">
-      </form>
-
-    </div>
 
 
     <!-- article -->

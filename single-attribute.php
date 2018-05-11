@@ -6,22 +6,26 @@
 
   <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
-    <?php $back_id = (int) get_field( 'query_logic_group_id', get_the_ID() )->ID; ?>
+    <?php $back_id = (int) get_field( 'attribute_model_id', get_the_ID() )->ID; ?>
     <div class="back-button-container">
       <a id="BackButton"
         href="<?php the_permalink( $back_id ); ?>"
-        title="<?php echo get_field( 'logic_group_name', $back_id ); ?>">
+        title="<?php echo get_field( 'model_name', $back_id ); ?>">
         <span class="material-icons">
           chevron_left
         </span>
         <span>
-          <?php echo get_field( 'logic_group_name', $back_id ); ?>
-          Logic
+          <?php echo get_field( 'model_name', $back_id ); ?>
+          Model
         </span>
       </a>
     </div>
 
-    <h1><?php echo get_field( 'query_name', get_the_ID() ); ?> Query</h1>
+    <h1>
+      <?php echo get_field( 'model_name', $back_id ); ?>
+      <?php echo get_field( 'attribute_name', get_the_ID() ); ?>
+      &lt;<?php echo get_field( 'model_name', $back_id ); ?>.<?php echo get_field( 'attribute_name', get_the_ID() ); ?>&gt;
+    </h1>
 
     <!-- article -->
     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -78,95 +82,6 @@
   </section>
   <!-- /section -->
   </main>
-
-  <script>
-  (function ($) {"use strict";
-
-    var busy = false;
-    var finished = false;
-
-    var offset = 0;
-    var lastScrollMax = 0;
-
-    $(document).ready(function () {
-      initFeed();
-    });
-
-    function isBusy () {
-      return true === busy;
-    }
-
-    function setBusy ( newValue ) {
-      busy = true === newValue ? true : false;
-    }
-
-    function isFinished () {
-      $("div.content-cards div.transactions-loading").hide();
-      return true === finished;
-    }
-
-    function setFinished ( newValue ) {
-      finished = true === newValue ? true : false;
-    }
-
-    function initFeed () {
-      $(window).scroll(function () {
-        if (isBusy() || isFinished()) {
-          return;
-        }
-
-        setBusy(true);
-
-        var a = $(window)[0].scrollY;
-        var b = $(window)[0].innerHeight;
-        var c = a+b;
-        var x = $("div.content-cards ul.cards").height();
-
-        var needsMore = c > lastScrollMax && c > x;
-        if (needsMore) {
-          feed();
-          console.log($(window), a, b, c, x);
-        }
-
-        lastScrollMax = c;
-      });
-    }
-
-    function feed () {
-      refreshOffset();
-
-      var req = $.get(
-        '/wp-admin/admin-ajax.php?action=eviratec_money'
-        + '&type=getTransactionsByWallet'
-        + '&wallet_id=' + <?php the_ID(); ?>
-        + '&offset=' + offset
-      );
-
-      req.success(function (res) {
-        console.log(arguments);
-        var $newEls = $(res);
-        if (0 === $newEls.length || '' === res.trim()) {
-          isFinished();
-          return;
-        }
-        $newEls.appendTo($("div.content-cards ul.cards"));
-      });
-
-      req.error(function () {
-        console.log(arguments);
-      });
-
-      req.always(function () {
-        setBusy(false);
-      });
-    }
-
-    function refreshOffset () {
-      offset = $("div.content-cards ul.cards li.card").length;
-    }
-
-  })(jQuery);
-  </script>
 
 <?php get_sidebar(); ?>
 

@@ -6,7 +6,22 @@
 
   <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
-    <h1>Command &gt; <?php echo get_field( 'command_name', get_the_ID() ); ?></h1>
+    <?php $back_id = (int) get_field( 'command_logic_group_id', get_the_ID() )->ID; ?>
+    <div class="back-button-container">
+      <a id="BackButton"
+        href="<?php the_permalink( $back_id ); ?>"
+        title="<?php echo get_field( 'logic_group_name', $back_id ); ?>">
+        <span class="material-icons">
+          chevron_left
+        </span>
+        <span>
+          <?php echo get_field( 'logic_group_name', $back_id ); ?>
+          Logic
+        </span>
+      </a>
+    </div>
+
+    <h1><?php echo get_field( 'command_name', get_the_ID() ); ?> Command</h1>
 
     <h2>Logic</h2>
 

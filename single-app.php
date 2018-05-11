@@ -6,7 +6,7 @@
 
   <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
-    <h1>App &gt; <?php echo get_field( 'app_name', get_the_ID() ); ?></h1>
+    <h1><?php echo get_field( 'app_name', get_the_ID() ); ?></h1>
 
     <h2>Create Logic Group</h2>
 
