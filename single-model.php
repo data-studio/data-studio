@@ -8,19 +8,6 @@
 
     <h1>Model &gt; <?php echo get_field( 'model_name', get_the_ID() ); ?></h1>
 
-    <p style="margin-top: -12px;margin-left: 12px;">
-      <span class="date"
-        style="display:flex;align-items:center;color:rgba(0,0,0,0.38);">
-        <span class="material-icons"
-          style="font-size: 16px;">
-          event
-        </span>
-        <span style="font-weight: 400;margin-left: 4px;">
-          <?php the_time('F j, Y'); ?> <?php the_time('g:i a'); ?>
-        </span>
-      </span>
-    </p>
-
     <!-- <button id="CreateWorkout">
       New Workout
     </button> -->
@@ -37,7 +24,6 @@
     <?php
     $model_id = get_the_ID();
     $attributes = DataStudioQuery::getAttributesByModel( $model_id );
-    $days = array();
     ?>
 
     <h2>Attributes</h2>
@@ -47,19 +33,11 @@
       <ul class="cards">
       <?php while ($attributes->have_posts()) : ?>
         <?php $attributes->the_post(); ?>
-          <?php if ( !in_array( get_the_time('M Y'), $days ) ) : ?>
-          <?php $days[count($days)] = get_the_time('M Y'); ?>
-          <li class="card-group-heading">
-            <h3>
-              <span><?php the_time('M Y'); ?></span>
-            </h3>
-          </li>
-          <?php endif; ?>
-          <?php get_template_part( 'parts/lists/attribute-list-item'); ?>
-        <?php endwhile; ?>
-        <?php wp_reset_postdata(); ?>
+        <?php get_template_part( 'parts/lists/attribute-list-item'); ?>
+      <?php endwhile; ?>
+      <?php wp_reset_postdata(); ?>
       </ul>
-      <div class="models-loading"
+      <div class="attributes-loading"
         style="display: flex;flex-direction: row;height:120px;align-items:center;">
         <span class="spacer"></span>
         <div class="progress-view-wrapper">
@@ -151,7 +129,7 @@
     }
 
     function isFinished () {
-      $("div.content-cards div.models-loading").hide();
+      $("div.content-cards div.attributes-loading").hide();
       return true === finished;
     }
 
@@ -186,7 +164,7 @@
       refreshOffset();
 
       var req = $.get(
-        '/wp-admin/admin-ajax.php?action=eviratec_money'
+        '/wp-admin/admin-ajax.php?action=data_studio'
         + '&type=getAttributesByModel'
         + '&model_id=' + <?php the_ID(); ?>
         + '&offset=' + offset

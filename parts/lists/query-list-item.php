@@ -7,26 +7,15 @@
         info_outline
       </span>
     </div> -->
-    <div class="query-date">
-      <div class="day">
-        <?php the_time('D j'); ?>
-      </div>
-      <div class="time">
-        <?php the_time('g:ia'); ?>
-      </div>
-    </div>
     <div class="card-text">
       <h3>
         <span><?php echo get_field( 'query_name', get_the_ID() ); ?></span>
       </h3>
-      <p>
+      <!-- <p>
         Query
-      </p>
+      </p> -->
     </div>
     <span class="spacer"></span>
-    <span class="query-type">
-      Type
-    </span>
     <span class="material-icons">
       chevron_right
     </span>

@@ -7,14 +7,6 @@
         info_outline
       </span>
     </div> -->
-    <div class="attribute-date">
-      <div class="day">
-        <?php the_time('D j'); ?>
-      </div>
-      <div class="time">
-        <?php the_time('g:ia'); ?>
-      </div>
-    </div>
     <div class="card-text">
       <h3>
         <span><?php echo get_field( 'attribute_name', get_the_ID() ); ?></span>
