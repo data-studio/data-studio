@@ -330,11 +330,11 @@ form button,
 form input[type=submit] {
   width: 100%;
   line-height: 40px;
-  background: linear-gradient(to top, #EF6C00 0%, #F57C00 100%);
+  background: linear-gradient(to top, #455A64 0%, #546E7A 100%);
   color: rgba(255,255,255,1);
   font-size: 1.2em;
   font-weight: 600;
-  border: 1px solid #E65100;
+  border: 1px solid #455A64;
   border-radius: 2px;
 }
 #respond button,
