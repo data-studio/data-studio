@@ -1,4 +1,4 @@
-model<?php
+<?php
 /**
  * Copyright (c) 2018 Callan Peter Milne
  *
