@@ -18,7 +18,7 @@ get_header();
       <div class="dashboard-menu-wrapper">
         <ul id="DashboardMenu">
           <li class="dashboard-menu-item">
-            <a href="/events/"
+            <a href="/apps/"
               title="">
               <div class="icon-container">
                 <span class="spacer"></span>
@@ -30,64 +30,7 @@ get_header();
               <div class="label-container">
                 <span class="spacer"></span>
                 <span class="menu-item-label">
-                  Event Log
-                </span>
-                <span class="spacer"></span>
-              </div>
-            </a>
-          </li>
-          <li class="dashboard-menu-item">
-            <a href="/workouts/"
-              title="">
-              <div class="icon-container">
-                <span class="spacer"></span>
-                <span class="menu-item-icon material-icons">
-                  fitness_center
-                </span>
-                <span class="spacer"></span>
-              </div>
-              <div class="label-container">
-                <span class="spacer"></span>
-                <span class="menu-item-label">
-                  Fitness
-                </span>
-                <span class="spacer"></span>
-              </div>
-            </a>
-          </li>
-          <li class="dashboard-menu-item">
-            <a href="/wallets/"
-              title="">
-              <div class="icon-container">
-                <span class="spacer"></span>
-                <span class="menu-item-icon material-icons">
-                  attach_money
-                </span>
-                <span class="spacer"></span>
-              </div>
-              <div class="label-container">
-                <span class="spacer"></span>
-                <span class="menu-item-label">
-                  Money
-                </span>
-                <span class="spacer"></span>
-              </div>
-            </a>
-          </li>
-          <li class="dashboard-menu-item">
-            <a href="/todo-lists/"
-              title="">
-              <div class="icon-container">
-                <span class="spacer"></span>
-                <span class="menu-item-icon material-icons">
-                  check
-                </span>
-                <span class="spacer"></span>
-              </div>
-              <div class="label-container">
-                <span class="spacer"></span>
-                <span class="menu-item-label">
-                  To-Do
+                  Apps
                 </span>
                 <span class="spacer"></span>
               </div>

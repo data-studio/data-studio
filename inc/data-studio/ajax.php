@@ -15,10 +15,10 @@
  * PERFORMANCE OF THIS SOFTWARE.
  */
 
-add_action( 'wp_ajax_nopriv_eviratec_money', 'eviratec_money_nopriv_ajax' );
-add_action( 'wp_ajax_eviratec_money', 'eviratec_money_ajax' );
+add_action( 'wp_ajax_nopriv_data_studio', 'data_studio_nopriv_ajax' );
+add_action( 'wp_ajax_data_studio', 'data_studio_ajax' );
 
-function eviratec_money_nopriv_ajax () {
+function data_studio_nopriv_ajax () {
   $response = json_encode( $_REQUEST );
 
   header( 'Content-Type: application/json;charset=utf-8' );
@@ -31,46 +31,169 @@ function eviratec_money_nopriv_ajax () {
   wp_die();
 }
 
-// wp-admin/admin-ajax.php?action=eviratec_money
-function eviratec_money_ajax () {
+// wp-admin/admin-ajax.php?action=data_studio
+function data_studio_ajax () {
   $response = json_encode( $_REQUEST );
 
 
 
   try {
     switch ( $_REQUEST['type'] ) {
-      case 'createWallet':
-        $response = MoneyCmd::createWallet(
-           $_REQUEST['summary'],
-           explode( ',', $_REQUEST['tags'] )
+      case 'createApp':
+        $response = DataStudioCmd::createApp(
+           $_REQUEST['name']
         );
         break;
 
-      case 'getTransactionsByWallet':
+      case 'createLogicGroup':
+        $response = DataStudioCmd::createLogicGroup(
+           $_REQUEST['app_id'],
+           $_REQUEST['name']
+        );
+        break;
+
+      case 'createModel':
+        $response = DataStudioCmd::createModel(
+           $_REQUEST['logic_group_id'],
+           $_REQUEST['name']
+        );
+        break;
+
+      case 'createAttribute':
+        $response = DataStudioCmd::createAttribute(
+           $_REQUEST['model_id'],
+           $_REQUEST['name']
+        );
+        break;
+
+      case 'createCommand':
+        $response = DataStudioCmd::createCommand(
+           $_REQUEST['logic_group_id'],
+           $_REQUEST['name']
+        );
+        break;
+
+      case 'createQuery':
+        $response = DataStudioCmd::createQuery(
+           $_REQUEST['logic_group_id'],
+           $_REQUEST['name']
+        );
+        break;
+
+      case 'getLogicGroupsByApp':
         // &type=getEvents&offset=8
-        $events = MoneyQuery::getTransactionsByWallet( [
-          'offset' => $_REQUEST['offset'],
-        ] );
+        $logic_groups = DataStudioQuery::getLogicGroupsByApp(
+          $_REQUEST['app_id'],
+          [
+            'offset' => $_REQUEST['offset'],
+          ]
+        );
         // $response = [
         //   $events->posts,
         //   $events->post_count,
         // ];
         header( 'Content-Type: text/html;charset=utf-8' );
         ?>
-        <?php if ($events->have_posts()) : while ($events->have_posts()) : ?>
-          <?php $events->the_post(); ?>
-            <?php if ( !in_array( get_the_time('M Y'), $days ) ) : ?>
-            <?php $days[count($days)] = get_the_time('M Y'); ?>
-            <li class="card-group-heading">
-              <h3>
-                <span><?php the_time('M Y'); ?></span>
-              </h3>
-            </li>
-            <?php endif; ?>
-            <?php get_template_part( 'parts/lists/transaction-list-item'); ?>
-          <?php endwhile; endif; ?>
-      <?php
-      wp_die();
+        <?php if ($logic_groups->have_posts()) : ?>
+        <?php while ($logic_groups->have_posts()) : ?>
+          <?php $logic_groups->the_post(); ?>
+          <?php get_template_part( 'parts/lists/logic_group-list-item'); ?>
+        <?php endwhile; endif; ?>
+        <?php
+        wp_die();
+        break;
+
+      case 'getModelsByLogicGroup':
+        // &type=getEvents&offset=8
+        $models = DataStudioQuery::getModelsByLogicGroup(
+          $_REQUEST['logic_group_id'],
+          [
+            'offset' => $_REQUEST['offset'],
+          ]
+        );
+        // $response = [
+        //   $events->posts,
+        //   $events->post_count,
+        // ];
+        header( 'Content-Type: text/html;charset=utf-8' );
+        ?>
+        <?php if ($models->have_posts()) : ?>
+        <?php while ($models->have_posts()) : ?>
+          <?php $models->the_post(); ?>
+          <?php get_template_part( 'parts/lists/model-list-item'); ?>
+        <?php endwhile; endif; ?>
+        <?php
+        wp_die();
+        break;
+
+      case 'getAttributesByModel':
+        // &type=getEvents&offset=8
+        $attributes = DataStudioQuery::getAttributesByModel(
+          $_REQUEST['model_id'],
+          [
+            'offset' => $_REQUEST['offset'],
+          ]
+        );
+        // $response = [
+        //   $events->posts,
+        //   $events->post_count,
+        // ];
+        header( 'Content-Type: text/html;charset=utf-8' );
+        ?>
+        <?php if ($attributes->have_posts()) : ?>
+        <?php while ($attributes->have_posts()) : ?>
+          <?php $attributes->the_post(); ?>
+          <?php get_template_part( 'parts/lists/attribute-list-item'); ?>
+        <?php endwhile; endif; ?>
+        <?php
+        wp_die();
+        break;
+
+      case 'getCommandsByLogicGroup':
+        // &type=getEvents&offset=8
+        $commands = DataStudioQuery::getCommandsByLogicGroup(
+          $_REQUEST['logic_group_id'],
+          [
+            'offset' => $_REQUEST['offset'],
+          ]
+        );
+        // $response = [
+        //   $events->posts,
+        //   $events->post_count,
+        // ];
+        header( 'Content-Type: text/html;charset=utf-8' );
+        ?>
+        <?php if ($commands->have_posts()) : ?>
+        <?php while ($commands->have_posts()) : ?>
+          <?php $commands->the_post(); ?>
+          <?php get_template_part( 'parts/lists/command-list-item'); ?>
+        <?php endwhile; endif; ?>
+        <?php
+        wp_die();
+        break;
+
+      case 'getQueriesByLogicGroup':
+        // &type=getEvents&offset=8
+        $queries = DataStudioQuery::getQueriesByLogicGroup(
+          $_REQUEST['logic_group_id'],
+          [
+            'offset' => $_REQUEST['offset'],
+          ]
+        );
+        // $response = [
+        //   $events->posts,
+        //   $events->post_count,
+        // ];
+        header( 'Content-Type: text/html;charset=utf-8' );
+        ?>
+        <?php if ($queries->have_posts()) : ?>
+        <?php while ($queries->have_posts()) : ?>
+          <?php $queries->the_post(); ?>
+          <?php get_template_part( 'parts/lists/query-list-item'); ?>
+        <?php endwhile; endif; ?>
+        <?php
+        wp_die();
+        break;
     }
 
     header( 'Content-Type: application/json;charset=utf-8' );

@@ -15,8 +15,12 @@
  * PERFORMANCE OF THIS SOFTWARE.
  */
 
-function money_rewrite () {
-  add_rewrite_rule( '^wallet/([0-9]+)/?', 'index.php?page_id=$matches[1]', 'top' );
-  add_rewrite_rule( '^transaction/([0-9]+)/?', 'index.php?page_id=$matches[1]', 'top' );
+function data_studio_rewrite () {
+  add_rewrite_rule( '^app/([0-9]+)/?', 'index.php?page_id=$matches[1]', 'top' );
+  add_rewrite_rule( '^logic-group/([0-9]+)/?', 'index.php?page_id=$matches[1]', 'top' );
+  add_rewrite_rule( '^model/([0-9]+)/?', 'index.php?page_id=$matches[1]', 'top' );
+  add_rewrite_rule( '^attribute/([0-9]+)/?', 'index.php?page_id=$matches[1]', 'top' );
+  add_rewrite_rule( '^command/([0-9]+)/?', 'index.php?page_id=$matches[1]', 'top' );
+  add_rewrite_rule( '^query/([0-9]+)/?', 'index.php?page_id=$matches[1]', 'top' );
 }
-add_action( 'init', 'money_rewrite' );
+add_action( 'init', 'data_studio_rewrite' );

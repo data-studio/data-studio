@@ -6,7 +6,7 @@
 
   <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
-    <h1><a href="/todo-lists/">Lists</a> &gt; <?php the_title(); ?></h1>
+    <h1>Model &gt; <?php the_title(); ?></h1>
 
     <p style="margin-top: -12px;margin-left: 12px;">
       <span class="date"
@@ -25,32 +25,41 @@
       New Workout
     </button> -->
 
-    <h2>Create Task</h2>
+    <h2>Create Attribute</h2>
 
     <form>
-      <?php get_template_part( 'parts/forms/create-todo-entry' ); ?>
-      <input name="EntryListID"
+      <?php get_template_part( 'parts/forms/create-attribute' ); ?>
+      <input name="AttributeModelID"
         type="hidden"
         value="<?php the_ID(); ?>">
     </form>
 
     <?php
-    $list_id = get_the_ID();
-    $entries = TodoQuery::getEntriesByList( $list_id );
+    $model_id = get_the_ID();
+    $attributes = DataStudioQuery::getAttributesByModel( $model_id );
+    $days = array();
     ?>
 
-    <h2>Tasks</h2>
+    <h2>Attributes</h2>
 
-    <?php if ($entries->have_posts()) : ?>
+    <?php if ($attributes->have_posts()) : ?>
     <div class="content-cards">
       <ul class="cards">
-      <?php while ($entries->have_posts()) : ?>
-        <?php $entries->the_post(); ?>
-          <?php get_template_part( 'parts/lists/todo-entry-list-item'); ?>
+      <?php while ($attributes->have_posts()) : ?>
+        <?php $attributes->the_post(); ?>
+          <?php if ( !in_array( get_the_time('M Y'), $days ) ) : ?>
+          <?php $days[count($days)] = get_the_time('M Y'); ?>
+          <li class="card-group-heading">
+            <h3>
+              <span><?php the_time('M Y'); ?></span>
+            </h3>
+          </li>
+          <?php endif; ?>
+          <?php get_template_part( 'parts/lists/attribute-list-item'); ?>
         <?php endwhile; ?>
         <?php wp_reset_postdata(); ?>
       </ul>
-      <div class="entries-loading"
+      <div class="models-loading"
         style="display: flex;flex-direction: row;height:120px;align-items:center;">
         <span class="spacer"></span>
         <div class="progress-view-wrapper">
@@ -61,7 +70,7 @@
     </div>
     </div>
     <?php else : ?>
-    <p>You haven't added any tasks to this to-do list.</p>
+    <p>You haven't added any attributes to this model.</p>
     <?php endif; ?>
 
     <!-- article -->
@@ -142,7 +151,7 @@
     }
 
     function isFinished () {
-      $("div.content-cards div.entries-loading").hide();
+      $("div.content-cards div.models-loading").hide();
       return true === finished;
     }
 
@@ -151,8 +160,6 @@
     }
 
     function initFeed () {
-      bindCheckboxes($("div.content-cards ul.cards li.card"));
-
       $(window).scroll(function () {
         if (isBusy() || isFinished()) {
           return;
@@ -179,9 +186,9 @@
       refreshOffset();
 
       var req = $.get(
-        '/wp-admin/admin-ajax.php?action=eviratec_todo'
-        + '&type=getEntriesByList'
-        + '&list_id=' + <?php the_ID(); ?>
+        '/wp-admin/admin-ajax.php?action=eviratec_money'
+        + '&type=getAttributesByModel'
+        + '&model_id=' + <?php the_ID(); ?>
         + '&offset=' + offset
       );
 
@@ -193,7 +200,6 @@
           return;
         }
         $newEls.appendTo($("div.content-cards ul.cards"));
-        bindCheckboxes($newEls);
       });
 
       req.error(function () {
@@ -202,41 +208,6 @@
 
       req.always(function () {
         setBusy(false);
-      });
-    }
-
-    function bindCheckboxes ($liEls) {
-      $liEls.each(function (i, $liEl) {
-        console.log($liEl, $($liEl).find('.entry-todo-toggle'));
-        $($liEl).find('.entry-todo-toggle').click(function ( $ev ) {
-          $ev.preventDefault();
-          toggleEntryDone($($liEl).find('a.card-content').attr('href').split(/\//g)[2], $($liEl));
-        })
-      });
-    }
-
-    function toggleEntryDone ( todoEntryID, $el ) {
-      console.log('Toggle entry done', todoEntryID);
-
-      var rType = $el.hasClass('entry-done') ? 'setEntryTodo' : 'setEntryDone';
-
-      var req = $.get(
-        '/wp-admin/admin-ajax.php?action=eviratec_todo'
-        + '&type=' + rType
-        + '&entry_id=' + todoEntryID
-      );
-
-      req.success(function (res) {
-        console.log(arguments);
-
-      });
-
-      req.error(function () {
-        console.log(arguments);
-      });
-
-      req.always(function () {
-
       });
     }
 
