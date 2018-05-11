@@ -8,6 +8,8 @@
 
     <h1>Command &gt; <?php echo get_field( 'command_name', get_the_ID() ); ?></h1>
 
+    <h2>Logic</h2>
+
     <!-- article -->
     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 

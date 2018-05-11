@@ -78,14 +78,14 @@ input:focus {
 .wrapper {
   max-width:1280px;
   width: 100%;
-  margin: 40px auto 0;
+  margin: 48px auto 0;
   position:relative;
   padding: 16px 0;
 }
 /* header */
 .header {
-  height: 40px;
-  max-height: 40px;
+  height: 48px;
+  max-height: 48px;
   background-color: rgba(22,22,22,1);
   color: rgba(255,255,255,1);
   position: fixed;
@@ -105,7 +105,7 @@ input:focus {
   padding: 0 16px;
   line-height 40px;
   display: flex;
-  height: 40px;
+  height: 48px;
   align-items: center;
   font-size: 1.5em;
   font-weight: 200;
@@ -116,8 +116,8 @@ input:focus {
   margin-right: 8px;
 }
 button#ToggleSidebar_Button {
-  height: 40px;
-  width: 40px;
+  height: 48px;
+  width: 48px;
   background: transparent;
   color: rgba(255,255,255,0.5);
   border: none;
