@@ -15,29 +15,83 @@
  * PERFORMANCE OF THIS SOFTWARE.
  */
 
-class MoneyQuery {
+class DataStudioQuery {
   public function __construct () {
 
   }
-  public static function getWallets ( $query = array() ) {
+
+  public static function getApps ( $query = array() ) {
     return new WP_Query( array_merge(
       array ( 'posts_per_page' => 100 ),
       $query,
       array(
-        'post_type'      => 'wallet',
+        'post_type'      => 'app',
         'author'         => wp_get_current_user()->ID,
       )
     ) );
   }
-  public static function getTransactionsByWallet ( $wallet_id, $query = array() ) {
+
+  public static function getLogicGroupsByApp ( $app_id, $query = array() ) {
     return new WP_Query( array_merge(
       array ( 'posts_per_page' => 100 ),
       $query,
       array(
-        'post_type'      => 'wallet_tx',
+        'post_type'      => 'logic_group',
         'author'         => wp_get_current_user()->ID,
-        'meta_key'       => 'wallet_id',
-        'meta_value'     => (int) $wallet_id,
+        'meta_key'       => 'app_id',
+        'meta_value'     => (int) $app_id,
+      )
+    ) );
+  }
+
+  public static function getModelsByLogicGroup ( $logic_group_id, $query = array() ) {
+    return new WP_Query( array_merge(
+      array ( 'posts_per_page' => 100 ),
+      $query,
+      array(
+        'post_type'      => 'model',
+        'author'         => wp_get_current_user()->ID,
+        'meta_key'       => 'logic_group_id',
+        'meta_value'     => (int) $logic_group_id,
+      )
+    ) );
+  }
+
+  public static function getAttributesByModel ( $model_id, $query = array() ) {
+    return new WP_Query( array_merge(
+      array ( 'posts_per_page' => 100 ),
+      $query,
+      array(
+        'post_type'      => 'attribute',
+        'author'         => wp_get_current_user()->ID,
+        'meta_key'       => 'model_id',
+        'meta_value'     => (int) $model_id,
+      )
+    ) );
+  }
+
+  public static function getCommandsByLogicGroup ( $logic_group_id, $query = array() ) {
+    return new WP_Query( array_merge(
+      array ( 'posts_per_page' => 100 ),
+      $query,
+      array(
+        'post_type'      => 'command',
+        'author'         => wp_get_current_user()->ID,
+        'meta_key'       => 'logic_group_id',
+        'meta_value'     => (int) $logic_group_id,
+      )
+    ) );
+  }
+
+  public static function getQueriesByLogicGroup ( $logic_group_id, $query = array() ) {
+    return new WP_Query( array_merge(
+      array ( 'posts_per_page' => 100 ),
+      $query,
+      array(
+        'post_type'      => 'query',
+        'author'         => wp_get_current_user()->ID,
+        'meta_key'       => 'logic_group_id',
+        'meta_value'     => (int) $logic_group_id,
       )
     ) );
   }
