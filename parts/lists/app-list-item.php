@@ -1,7 +1,7 @@
 <li class="card app-list-item">
   <a class="card-content"
-    href="/app/<?php the_ID(); ?>/"
-    title="<?php the_title(); ?>">
+    href="<?php the_permalink( get_the_ID() ); ?>"
+    title="<?php echo get_field( 'app_name', get_the_ID() ); ?>">
     <!-- <div class="icon-container">
       <span class="material-icons">
         info_outline
