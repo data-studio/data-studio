@@ -138,7 +138,7 @@
     }
 
     function isFinished () {
-      $("div.content-cards div.transactions-loading").hide();
+      $("div.content-cards div.logic-groups-loading").hide();
       return true === finished;
     }
 
@@ -173,9 +173,9 @@
       refreshOffset();
 
       var req = $.get(
-        '/wp-admin/admin-ajax.php?action=eviratec_money'
-        + '&type=getTransactionsByWallet'
-        + '&wallet_id=' + <?php the_ID(); ?>
+        '/wp-admin/admin-ajax.php?action=data_studio'
+        + '&type=getLogicGroupsByApp'
+        + '&app_id=' + <?php the_ID(); ?>
         + '&offset=' + offset
       );
 
