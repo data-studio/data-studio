@@ -6,7 +6,7 @@
 
   <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
-    <h1>Model &gt; <?php the_title(); ?></h1>
+    <h1>Model &gt; <?php echo get_field( 'model_name', get_the_ID() ); ?></h1>
 
     <p style="margin-top: -12px;margin-left: 12px;">
       <span class="date"

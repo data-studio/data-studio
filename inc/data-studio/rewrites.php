@@ -19,55 +19,55 @@ add_action( 'init', 'data_studio_rewrite' );
 
 function data_studio_rewrite () {
   add_rewrite_rule(
-    '^app/(.+)$',
+    '^app/(.+)/$',
     'index.php?post_type=app&p=$matches[1]',
     'top'
   );
 
   add_rewrite_rule(
-    '^logic-group/(.+)/models',
+    '^logic-group/(.+)/models/',
     'index.php?post_type=model&model_logic_group_id=$matches[1]',
     'top'
   );
 
   add_rewrite_rule(
-    '^logic-group/(.+)/commands$',
+    '^logic-group/(.+)/commands/$',
     'index.php?post_type=command&command_logic_group_id=$matches[1]',
     'top'
   );
 
   add_rewrite_rule(
-    '^logic-group/(.+)/queries',
+    '^logic-group/(.+)/queries/',
     'index.php?post_type=query&query_logic_group_id=$matches[1]',
     'top'
   );
 
   add_rewrite_rule(
-    '^logic-group/(.+)$',
+    '^logic-group/(.+)/$',
     'index.php?post_type=logic_group&p=$matches[1]',
     'top'
   );
 
   add_rewrite_rule(
-    '^model/(.+)$',
+    '^model/(.+)/$',
     'index.php?post_type=model&p=$matches[1]',
     'top'
   );
 
   add_rewrite_rule(
-    '^attribute/(.+)$',
+    '^attribute/(.+)/$',
     'index.php?post_type=attribute&p=$matches[1]',
     'top'
   );
 
   add_rewrite_rule(
-    '^command/(.+)$',
+    '^command/(.+)/$',
     'index.php?post_type=command&p=$matches[1]',
     'top'
   );
 
   add_rewrite_rule(
-    '^query/(.+)$',
+    '^query/(.+)/$',
     'index.php?post_type=query&p=$matches[1]',
     'top'
   );

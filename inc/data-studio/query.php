@@ -38,7 +38,7 @@ class DataStudioQuery {
       array(
         'post_type'      => 'logic_group',
         'author'         => wp_get_current_user()->ID,
-        'meta_key'       => 'app_id',
+        'meta_key'       => 'logic_group_app_id',
         'meta_value'     => (int) $app_id,
       )
     ) );
@@ -51,7 +51,7 @@ class DataStudioQuery {
       array(
         'post_type'      => 'model',
         'author'         => wp_get_current_user()->ID,
-        'meta_key'       => 'logic_group_id',
+        'meta_key'       => 'model_logic_group_id',
         'meta_value'     => (int) $logic_group_id,
       )
     ) );
@@ -64,7 +64,7 @@ class DataStudioQuery {
       array(
         'post_type'      => 'attribute',
         'author'         => wp_get_current_user()->ID,
-        'meta_key'       => 'model_id',
+        'meta_key'       => 'attribute_model_id',
         'meta_value'     => (int) $model_id,
       )
     ) );
@@ -77,7 +77,7 @@ class DataStudioQuery {
       array(
         'post_type'      => 'command',
         'author'         => wp_get_current_user()->ID,
-        'meta_key'       => 'logic_group_id',
+        'meta_key'       => 'command_logic_group_id',
         'meta_value'     => (int) $logic_group_id,
       )
     ) );
@@ -90,7 +90,7 @@ class DataStudioQuery {
       array(
         'post_type'      => 'query',
         'author'         => wp_get_current_user()->ID,
-        'meta_key'       => 'logic_group_id',
+        'meta_key'       => 'query_logic_group_id',
         'meta_value'     => (int) $logic_group_id,
       )
     ) );

@@ -27,7 +27,7 @@
     <span class="logic-group-type">
       Type
     </span>
-    <div class="logic-group-amt">
+    <!-- <div class="logic-group-amt">
       <?php echo get_field( 'logic_group_count_models', get_the_ID() ); ?>
     </div>
     <div class="logic-group-amt">
@@ -35,7 +35,7 @@
     </div>
     <div class="logic-group-amt">
       <?php echo get_field( 'logic_group_count_queries', get_the_ID() ); ?>
-    </div>
+    </div> -->
     <span class="material-icons">
       chevron_right
     </span>

@@ -6,7 +6,7 @@
 
   <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
-    <h1><a href="/apps/">Apps</a> &gt; <?php the_title(); ?></h1>
+    <h1>App &gt; <?php echo get_field( 'app_name', get_the_ID() ); ?></h1>
 
     <p style="margin-top: -12px;margin-left: 12px;">
       <span class="date"
@@ -21,7 +21,44 @@
       </span>
     </p>
 
-    Single app
+    <h2>Create Logic Group</h2>
+
+    <form>
+      <?php get_template_part( 'parts/forms/create-logic_group' ); ?>
+      <input name="LogicGroupAppID"
+        type="hidden"
+        value="<?php the_ID(); ?>">
+    </form>
+
+    <?php
+    $app_id = get_the_ID();
+    $logic_groups = DataStudioQuery::getLogicGroupsByApp( $app_id );
+    ?>
+
+    <h2>Logic Groups</h2>
+
+    <?php if ($logic_groups->have_posts()) : ?>
+    <div class="content-cards">
+      <ul class="cards">
+      <?php while ($logic_groups->have_posts()) : ?>
+        <?php $logic_groups->the_post(); ?>
+        <?php get_template_part( 'parts/lists/logic_group-list-item'); ?>
+      <?php endwhile; ?>
+      <?php wp_reset_postdata(); ?>
+      </ul>
+      <div class="logic-groups-loading"
+        style="display: flex;flex-direction: row;height:120px;align-items:center;">
+        <span class="spacer"></span>
+        <div class="progress-view-wrapper">
+          <div class="progress-indicator"></div>
+        </div>
+        <span class="spacer"></span>
+      </div>
+    </div>
+    </div>
+    <?php else : ?>
+    <p>You haven't added any logic groups to this app.</p>
+    <?php endif; ?>
 
 
     <!-- article -->

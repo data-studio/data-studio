@@ -19,46 +19,36 @@ get_header();
         New Event
       </button> -->
 
-      <h2>Create Wallet</h2>
+      <h2>Create App</h2>
 
       <form>
-        <?php get_template_part( 'parts/forms/create-wallet' ); ?>
+        <?php get_template_part( 'parts/forms/create-app' ); ?>
       </form>
 
-      <h2>Wallets</h2>
+      <h2>Apps</h2>
 
       <?php
-      $wallets = MoneyQuery::getWallets();
+      $apps = DataStudioQuery::getApps();
       ?>
 
-      <?php if ($wallets->have_posts()) : ?>
+      <?php if ($apps->have_posts()) : ?>
       <div class="content-cards">
         <ul class="cards">
-        <?php while ($wallets->have_posts()) : ?>
-          <?php $wallets->the_post(); ?>
+        <?php while ($apps->have_posts()) : ?>
+          <?php $apps->the_post(); ?>
             <li class="card wallet-list-item">
               <a class="card-content"
-                href="/wallet/<?php the_ID(); ?>/"
+                href="<?php the_permalink(); ?>"
                 title="<?php the_title(); ?>">
                 <div class="icon-container">
                   <span class="material-icons">
-                    attach_money
+                    map
                   </span>
                 </div>
                 <h3>
-                  <span><?php echo get_the_title(); ?></span>
+                  <span><?php echo get_field( 'app_name', get_the_ID() ); ?></span>
                 </h3>
                 <span class="spacer"></span>
-                <span class="wallet-balance">
-                  <?php echo str_replace( '-', '', number_format( get_field( 'wallet_balance', get_the_ID()), 2 ) ); ?>
-                </span>
-                <span class="wallet-balance-type">
-                  <?php if ( get_field( 'wallet_balance', get_the_ID()) + 0 < 0 ) : ?>
-                    DR
-                  <?php else : ?>
-                    CR
-                  <?php endif; ?>
-                </span>
                 <span class="material-icons">
                   chevron_right
                 </span>
@@ -68,7 +58,7 @@ get_header();
           <?php wp_reset_postdata(); ?>
         </ul>
       <?php else : ?>
-      <p>You haven't created any wallets, yet.</p>
+      <p>You haven't created any apps, yet.</p>
       <?php endif; ?>
 
     <?php if (have_posts()): while (have_posts()) : the_post(); ?>

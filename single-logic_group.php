@@ -6,7 +6,7 @@
 
   <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
-    <h1><a href="/wallets/">Wallets</a> &gt; <?php the_title(); ?></h1>
+    <h1>Logic Group &gt; <?php echo get_field( 'logic_group_name', get_the_ID() ); ?></h1>
 
     <p style="margin-top: -12px;margin-left: 12px;">
       <span class="date"
@@ -21,57 +21,8 @@
       </span>
     </p>
 
-    <!-- <button id="CreateWorkout">
-      New Workout
-    </button> -->
+    Logic group
 
-    <h2>Create Transaction</h2>
-
-    <form>
-      <?php get_template_part( 'parts/forms/create-transaction' ); ?>
-      <input name="TransactionWalletID"
-        type="hidden"
-        value="<?php the_ID(); ?>">
-    </form>
-
-    <?php
-    $wallet_id = get_the_ID();
-    $transactions = MoneyQuery::getTransactionsByWallet( $wallet_id );
-    $days = array();
-    ?>
-
-    <h2>Transactions</h2>
-
-    <?php if ($transactions->have_posts()) : ?>
-    <div class="content-cards">
-      <ul class="cards">
-      <?php while ($transactions->have_posts()) : ?>
-        <?php $transactions->the_post(); ?>
-          <?php if ( !in_array( get_the_time('M Y'), $days ) ) : ?>
-          <?php $days[count($days)] = get_the_time('M Y'); ?>
-          <li class="card-group-heading">
-            <h3>
-              <span><?php the_time('M Y'); ?></span>
-            </h3>
-          </li>
-          <?php endif; ?>
-          <?php get_template_part( 'parts/lists/transaction-list-item'); ?>
-        <?php endwhile; ?>
-        <?php wp_reset_postdata(); ?>
-      </ul>
-      <div class="transactions-loading"
-        style="display: flex;flex-direction: row;height:120px;align-items:center;">
-        <span class="spacer"></span>
-        <div class="progress-view-wrapper">
-          <div class="progress-indicator"></div>
-        </div>
-        <span class="spacer"></span>
-      </div>
-    </div>
-    </div>
-    <?php else : ?>
-    <p>You haven't added any transactions to this wallet.</p>
-    <?php endif; ?>
 
     <!-- article -->
     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -151,7 +102,7 @@
     }
 
     function isFinished () {
-      $("div.content-cards div.transactions-loading").hide();
+      $("div.content-cards div.logic-groups-loading").hide();
       return true === finished;
     }
 
@@ -186,9 +137,9 @@
       refreshOffset();
 
       var req = $.get(
-        '/wp-admin/admin-ajax.php?action=eviratec_money'
-        + '&type=getTransactionsByWallet'
-        + '&wallet_id=' + <?php the_ID(); ?>
+        '/wp-admin/admin-ajax.php?action=data_studio'
+        + '&type=getLogicGroupsByApp'
+        + '&app_id=' + <?php the_ID(); ?>
         + '&offset=' + offset
       );
 
