@@ -55,7 +55,6 @@
         <span class="spacer"></span>
       </div>
     </div>
-    </div>
     <?php else : ?>
     <p>You haven't added any logic groups to this app.</p>
     <?php endif; ?>

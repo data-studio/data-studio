@@ -57,6 +57,7 @@ get_header();
           <?php endwhile; ?>
           <?php wp_reset_postdata(); ?>
         </ul>
+      </div>
       <?php else : ?>
       <p>You haven't created any apps, yet.</p>
       <?php endif; ?>

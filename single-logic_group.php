@@ -21,7 +21,95 @@
       </span>
     </p>
 
-    Logic group
+    <h2>Create Model</h2>
+
+    <form>
+      <?php get_template_part( 'parts/forms/create-model' ); ?>
+      <input name="ModelLogicGroupID"
+        type="hidden"
+        value="<?php the_ID(); ?>">
+    </form>
+
+    <?php
+    $logic_group_id = get_the_ID();
+    $models = DataStudioQuery::getModelsByLogicGroup( $logic_group_id );
+    ?>
+
+    <h2>Models</h2>
+
+    <?php if ($models->have_posts()) : ?>
+    <div class="content-cards">
+      <ul class="cards">
+      <?php while ($models->have_posts()) : ?>
+        <?php $models->the_post(); ?>
+        <?php get_template_part( 'parts/lists/model-list-item'); ?>
+      <?php endwhile; ?>
+      <?php wp_reset_postdata(); ?>
+      </ul>
+    </div>
+    <?php else : ?>
+    <p>You haven't added any models to this logic group.</p>
+    <?php endif; ?>
+
+    <h2>Create Query</h2>
+
+    <form>
+      <?php get_template_part( 'parts/forms/create-query' ); ?>
+      <input name="QueryLogicGroupID"
+        type="hidden"
+        value="<?php the_ID(); ?>">
+    </form>
+
+    <?php
+    $logic_group_id = get_the_ID();
+    $queries = DataStudioQuery::getQueriesByLogicGroup( $logic_group_id );
+    ?>
+
+    <h2>Queries</h2>
+
+    <?php if ($queries->have_posts()) : ?>
+    <div class="content-cards">
+      <ul class="cards">
+      <?php while ($queries->have_posts()) : ?>
+        <?php $queries->the_post(); ?>
+        <?php get_template_part( 'parts/lists/query-list-item'); ?>
+      <?php endwhile; ?>
+      <?php wp_reset_postdata(); ?>
+      </ul>
+    </div>
+    <?php else : ?>
+    <p>You haven't added any queries to this logic group.</p>
+    <?php endif; ?>
+
+    <h2>Create Command</h2>
+
+    <form>
+      <?php get_template_part( 'parts/forms/create-command' ); ?>
+      <input name="CommandLogicGroupID"
+        type="hidden"
+        value="<?php the_ID(); ?>">
+    </form>
+
+    <?php
+    $logic_group_id = get_the_ID();
+    $commands = DataStudioQuery::getCommandsByLogicGroup( $logic_group_id );
+    ?>
+
+    <h2>Commands</h2>
+
+    <?php if ($commands->have_posts()) : ?>
+    <div class="content-cards">
+      <ul class="cards">
+      <?php while ($commands->have_posts()) : ?>
+        <?php $commands->the_post(); ?>
+        <?php get_template_part( 'parts/lists/command-list-item'); ?>
+      <?php endwhile; ?>
+      <?php wp_reset_postdata(); ?>
+      </ul>
+    </div>
+    <?php else : ?>
+    <p>You haven't added any commands to this logic group.</p>
+    <?php endif; ?>
 
 
     <!-- article -->
@@ -79,95 +167,6 @@
   </section>
   <!-- /section -->
   </main>
-
-  <script>
-  (function ($) {"use strict";
-
-    var busy = false;
-    var finished = false;
-
-    var offset = 0;
-    var lastScrollMax = 0;
-
-    $(document).ready(function () {
-      initFeed();
-    });
-
-    function isBusy () {
-      return true === busy;
-    }
-
-    function setBusy ( newValue ) {
-      busy = true === newValue ? true : false;
-    }
-
-    function isFinished () {
-      $("div.content-cards div.logic-groups-loading").hide();
-      return true === finished;
-    }
-
-    function setFinished ( newValue ) {
-      finished = true === newValue ? true : false;
-    }
-
-    function initFeed () {
-      $(window).scroll(function () {
-        if (isBusy() || isFinished()) {
-          return;
-        }
-
-        setBusy(true);
-
-        var a = $(window)[0].scrollY;
-        var b = $(window)[0].innerHeight;
-        var c = a+b;
-        var x = $("div.content-cards ul.cards").height();
-
-        var needsMore = c > lastScrollMax && c > x;
-        if (needsMore) {
-          feed();
-          console.log($(window), a, b, c, x);
-        }
-
-        lastScrollMax = c;
-      });
-    }
-
-    function feed () {
-      refreshOffset();
-
-      var req = $.get(
-        '/wp-admin/admin-ajax.php?action=data_studio'
-        + '&type=getLogicGroupsByApp'
-        + '&app_id=' + <?php the_ID(); ?>
-        + '&offset=' + offset
-      );
-
-      req.success(function (res) {
-        console.log(arguments);
-        var $newEls = $(res);
-        if (0 === $newEls.length || '' === res.trim()) {
-          isFinished();
-          return;
-        }
-        $newEls.appendTo($("div.content-cards ul.cards"));
-      });
-
-      req.error(function () {
-        console.log(arguments);
-      });
-
-      req.always(function () {
-        setBusy(false);
-      });
-    }
-
-    function refreshOffset () {
-      offset = $("div.content-cards ul.cards li.card").length;
-    }
-
-  })(jQuery);
-  </script>
 
 <?php get_sidebar(); ?>
 

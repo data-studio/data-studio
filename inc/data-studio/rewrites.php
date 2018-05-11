@@ -25,20 +25,20 @@ function data_studio_rewrite () {
   );
 
   add_rewrite_rule(
-    '^logic-group/(.+)/models/',
-    'index.php?post_type=model&model_logic_group_id=$matches[1]',
+    '^logic-group/(.+)/models/$',
+    'index.php?post_type=model&meta_key=model_logic_group_id&meta_value=$matches[1]',
     'top'
   );
 
   add_rewrite_rule(
     '^logic-group/(.+)/commands/$',
-    'index.php?post_type=command&command_logic_group_id=$matches[1]',
+    'index.php?post_type=command&meta_key=command_logic_group_id&meta_value=$matches[1]',
     'top'
   );
 
   add_rewrite_rule(
-    '^logic-group/(.+)/queries/',
-    'index.php?post_type=query&query_logic_group_id=$matches[1]',
+    '^logic-group/(.+)/queries/$',
+    'index.php?post_type=query&meta_key=query_logic_group_id&meta_value=$matches[1]',
     'top'
   );
 
