@@ -13,7 +13,7 @@
     $logic_groups = DataStudioQuery::getLogicGroupsByApp( $app_id );
     ?>
 
-    <section>
+    <section class="submodel">
       <header>
         <h2>Logic Groups</h2>
         <span class="spacer"></span>

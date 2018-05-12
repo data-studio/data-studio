@@ -27,7 +27,7 @@
     $model_id = get_the_ID();
     $attributes = DataStudioQuery::getAttributesByModel( $model_id );
     ?>
-    <section>
+    <section class="submodel">
       <header>
         <h2>Attributes</h2>
         <span class="spacer"></span>

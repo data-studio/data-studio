@@ -28,7 +28,7 @@
     $models = DataStudioQuery::getModelsByLogicGroup( $logic_group_id );
     ?>
 
-    <section>
+    <section class="submodel">
       <header>
         <h2>Models</h2>
         <span class="spacer"></span>
@@ -87,7 +87,7 @@
     $queries = DataStudioQuery::getQueriesByLogicGroup( $logic_group_id );
     ?>
 
-    <section>
+    <section class="submodel">
       <header>
         <h2>Queries</h2>
         <span class="spacer"></span>
@@ -145,7 +145,7 @@
     $commands = DataStudioQuery::getCommandsByLogicGroup( $logic_group_id );
     ?>
 
-    <section>
+    <section class="submodel">
       <header>
         <h2>Commands</h2>
         <span class="spacer"></span>

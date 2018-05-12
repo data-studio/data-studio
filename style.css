@@ -199,6 +199,24 @@ h3,
 #respond {
   margin: 1.34em 16px 0.67em;
 }
+section.submodel header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+section.submodel header button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 1.34em 16px 0.67em;
+  border-radius: 3px;
+  background: #fff;
+  border-top: 1px solid rgba(0,0,0,0.12);
+  border-left: 1px solid rgba(0,0,0,0.12);
+  border-right: 1px solid rgba(0,0,0,0.18);
+  border-bottom: 1px solid rgba(0,0,0,0.24);
+  outline: none;
+}
 
 /* Forms */
 div.eviratec-web.eviratec-form {
