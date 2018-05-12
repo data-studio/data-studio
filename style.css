@@ -629,3 +629,6 @@ a img.aligncenter {
     page-break-after:avoid;
   }
 }
+a.post-edit-link {
+  display: none;
+}

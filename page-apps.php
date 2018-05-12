@@ -13,7 +13,7 @@ get_header();
     <!-- section -->
     <section>
 
-      <h1>Money &gt; <?php the_title(); ?></h1>
+      <h1><?php the_title(); ?></h1>
 
       <!-- <button id="LogEvent">
         New Event
