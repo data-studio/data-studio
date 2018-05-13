@@ -89,6 +89,20 @@
       })(jQuery);
     </script>
 
+    <script>
+    (function ($) {"use strict";
+      $.dsScrollFeed({
+        type: 'getAttributesByModel',
+        args: {
+          model_id: <?php the_ID(); ?>
+        },
+        feedItemSelector: 'li.card',
+        $feedEl: $("div.content-cards ul.cards"),
+        $loadingEl: $("div.content-cards div.attributes-loading"),
+      });
+    })(jQuery);
+    </script>
+
     <!-- article -->
     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
@@ -144,95 +158,6 @@
   </section>
   <!-- /section -->
   </main>
-
-  <script>
-  (function ($) {"use strict";
-
-    var busy = false;
-    var finished = false;
-
-    var offset = 0;
-    var lastScrollMax = 0;
-
-    $(document).ready(function () {
-      initFeed();
-    });
-
-    function isBusy () {
-      return true === busy;
-    }
-
-    function setBusy ( newValue ) {
-      busy = true === newValue ? true : false;
-    }
-
-    function isFinished () {
-      $("div.content-cards div.attributes-loading").hide();
-      return true === finished;
-    }
-
-    function setFinished ( newValue ) {
-      finished = true === newValue ? true : false;
-    }
-
-    function initFeed () {
-      $(window).scroll(function () {
-        if (isBusy() || isFinished()) {
-          return;
-        }
-
-        setBusy(true);
-
-        var a = $(window)[0].scrollY;
-        var b = $(window)[0].innerHeight;
-        var c = a+b;
-        var x = $("div.content-cards ul.cards").height();
-
-        var needsMore = c > lastScrollMax && c > x;
-        if (needsMore) {
-          feed();
-          console.log($(window), a, b, c, x);
-        }
-
-        lastScrollMax = c;
-      });
-    }
-
-    function feed () {
-      refreshOffset();
-
-      var req = $.get(
-        '/wp-admin/admin-ajax.php?action=data_studio'
-        + '&type=getAttributesByModel'
-        + '&model_id=' + <?php the_ID(); ?>
-        + '&offset=' + offset
-      );
-
-      req.success(function (res) {
-        console.log(arguments);
-        var $newEls = $(res);
-        if (0 === $newEls.length || '' === res.trim()) {
-          isFinished();
-          return;
-        }
-        $newEls.appendTo($("div.content-cards ul.cards"));
-      });
-
-      req.error(function () {
-        console.log(arguments);
-      });
-
-      req.always(function () {
-        setBusy(false);
-      });
-    }
-
-    function refreshOffset () {
-      offset = $("div.content-cards ul.cards li.card").length;
-    }
-
-  })(jQuery);
-  </script>
 
 <?php get_sidebar(); ?>
 
