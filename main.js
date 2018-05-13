@@ -19,6 +19,9 @@
 
   var _ajax_url = data_studio_ajax_object.ajax_url;
 
+  /**
+   * Form Toggle
+   */
   (function ($) {"use strict";
     $.dsFormToggle = function ( _d ) {
       _d = _d || {};
@@ -46,6 +49,9 @@
     };
   })($);
 
+  /**
+   * AJAX Form
+   */
   (function ($) {"use strict";
     $.dsAjaxForm = function ( _d ) {
       _d = _d || {};
@@ -89,7 +95,10 @@
       }
     };
   })($);
-
+  
+  /**
+   * Scroll Feed
+   */
   (function ($) {"use strict";
     $.dsScrollFeed = function ( _d ) {
       _d = _d || {};
