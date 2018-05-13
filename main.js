@@ -45,4 +45,108 @@
       }
     };
   })($);
+
+  (function ($) {"use strict";
+    $.dsScrollFeed = function ( _d ) {
+      _d = _d || {};
+      var type = _d.type;
+      var args = _d.args || {};
+      var $loadingEl = _d.$loadingEl || $('<div></div>');
+      var $feedEl = _d.$feedEl || $('<ul></ul>');
+      var feedItemSelector = _d.feedItemSelector || 'li.card';
+
+      var busy = false;
+      var finished = false;
+
+      var offset = 0;
+      var lastScrollMax = 0;
+
+      $(document).ready(function () {
+        initFeed();
+      });
+
+      function isBusy () {
+        return true === busy;
+      }
+
+      function setBusy ( newValue ) {
+        busy = true === newValue ? true : false;
+      }
+
+      function isFinished () {
+        $loadingEl.hide();
+        return true === finished;
+      }
+
+      function setFinished ( newValue ) {
+        finished = true === newValue ? true : false;
+      }
+
+      function initFeed () {
+        $(window).scroll(function () {
+          if (isBusy() || isFinished()) {
+            return;
+          }
+
+          setBusy(true);
+
+          var a = $(window)[0].scrollY;
+          var b = $(window)[0].innerHeight;
+          var c = a+b;
+          var x = $feedEl.height();
+
+          var needsMore = c > lastScrollMax && c > x;
+          if (needsMore) {
+            feed();
+            console.log($(window), a, b, c, x);
+          }
+
+          lastScrollMax = c;
+        });
+      }
+
+      function feed () {
+        refreshOffset();
+        var getUrl = _ajax_url
+          + '?action=data_studio'
+          + '&type=' + type
+          + '&offset=' + offset;
+
+        getUrl = appendArgsTo(getUrl);
+
+        var req = $.get(getUrl);
+
+        req.success(function (res) {
+          console.log(arguments);
+          var $newEls = $(res);
+          if (0 === $newEls.length || '' === res.trim()) {
+            isFinished();
+            return;
+          }
+          $newEls.appendTo($feedEl);
+        });
+
+        req.error(function () {
+          console.log(arguments);
+        });
+
+        req.always(function () {
+          setBusy(false);
+        });
+      }
+
+      function refreshOffset () {
+        offset = $feedEl.find(feedItemSelector).length;
+      }
+
+      function appendArgsTo ( url ) {
+        var argKeys = Object.keys(args);
+        var k = argKeys.length;
+        for (var i = 0; i < k; i++) {
+          url = url + '&' + argKeys[i] + '=' + args[argKeys[i]];
+        }
+        return url;
+      }
+    }
+  })($);
 })(jQuery, data_studio_ajax_object);
