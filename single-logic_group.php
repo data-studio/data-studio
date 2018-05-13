@@ -81,6 +81,18 @@
       })(jQuery);
     </script>
 
+    <script>
+    (function ($) {"use strict";
+      $.dsAjaxForm({
+        type: 'createModel',
+        $formEl: $('div.create-form.create-model-form form'),
+        onSuccess: function (res) {
+          window.location.reload();
+        },
+      });
+    })(jQuery);
+    </script>
+
 
     <?php
     $logic_group_id = get_the_ID();
@@ -140,6 +152,18 @@
       })(jQuery);
     </script>
 
+    <script>
+    (function ($) {"use strict";
+      $.dsAjaxForm({
+        type: 'createQuery',
+        $formEl: $('div.create-form.create-query-form form'),
+        onSuccess: function (res) {
+          window.location.reload();
+        },
+      });
+    })(jQuery);
+    </script>
+
     <?php
     $logic_group_id = get_the_ID();
     $commands = DataStudioQuery::getCommandsByLogicGroup( $logic_group_id );
@@ -196,6 +220,18 @@
           });
         });
       })(jQuery);
+    </script>
+
+    <script>
+    (function ($) {"use strict";
+      $.dsAjaxForm({
+        type: 'createCommand',
+        $formEl: $('div.create-form.create-command-form form'),
+        onSuccess: function (res) {
+          window.location.reload();
+        },
+      });
+    })(jQuery);
     </script>
 
 

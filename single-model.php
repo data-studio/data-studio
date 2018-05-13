@@ -71,8 +71,10 @@
             <span class="spacer"></span>
           </div>
         </div>
-        </div>
         <?php else : ?>
+        <div class="content-cards">
+          <ul class="cards"></ul>
+        </div>
         <p>You haven't added any attributes to this model.</p>
         <?php endif; ?>
       </main>
@@ -97,8 +99,20 @@
           model_id: <?php the_ID(); ?>
         },
         feedItemSelector: 'li.card',
-        $feedEl: $("div.content-cards ul.cards"),
-        $loadingEl: $("div.content-cards div.attributes-loading"),
+        $feedEl: $('div.content-cards ul.cards'),
+        $loadingEl: $('div.content-cards div.attributes-loading'),
+      });
+    })(jQuery);
+    </script>
+
+    <script>
+    (function ($) {"use strict";
+      $.dsAjaxForm({
+        type: 'createAttribute',
+        $formEl: $('div.create-form.create-attribute-form form'),
+        onSuccess: function (res) {
+          window.location.reload();
+        },
       });
     })(jQuery);
     </script>

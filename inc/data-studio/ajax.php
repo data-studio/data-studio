@@ -41,42 +41,46 @@ function data_studio_ajax () {
     switch ( $_REQUEST['type'] ) {
       case 'createApp':
         $response = DataStudioCmd::createApp(
-           $_REQUEST['name']
+           $_REQUEST['args']['AppName']
         );
+        wp_die();
         break;
 
       case 'createLogicGroup':
         $response = DataStudioCmd::createLogicGroup(
-           $_REQUEST['app_id'],
-           $_REQUEST['name']
+           $_REQUEST['args']['LogicGroupAppID'],
+           $_REQUEST['args']['LogicGroupName']
         );
+        wp_die();
         break;
 
       case 'createModel':
         $response = DataStudioCmd::createModel(
-           $_REQUEST['logic_group_id'],
-           $_REQUEST['name']
+           $_REQUEST['args']['ModelLogicGroupID'],
+           $_REQUEST['args']['ModelName']
         );
+        wp_die();
         break;
 
       case 'createAttribute':
         $response = DataStudioCmd::createAttribute(
-           $_REQUEST['model_id'],
-           $_REQUEST['name']
+           $_REQUEST['args']['AttributeModelID'],
+           $_REQUEST['args']['AttributeName']
         );
+        wp_die();
         break;
 
       case 'createCommand':
         $response = DataStudioCmd::createCommand(
-           $_REQUEST['logic_group_id'],
-           $_REQUEST['name']
+           $_REQUEST['args']['CommandLogicGroupID'],
+           $_REQUEST['args']['CommandName']
         );
         break;
 
       case 'createQuery':
         $response = DataStudioCmd::createQuery(
-           $_REQUEST['logic_group_id'],
-           $_REQUEST['name']
+           $_REQUEST['args']['QueryLogicGroupID'],
+           $_REQUEST['args']['QueryName']
         );
         break;
 

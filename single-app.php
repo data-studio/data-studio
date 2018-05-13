@@ -88,6 +88,18 @@
     })(jQuery);
     </script>
 
+    <script>
+    (function ($) {"use strict";
+      $.dsAjaxForm({
+        type: 'createLogicGroup',
+        $formEl: $('div.create-form.create-logic_group-form form'),
+        onSuccess: function (res) {
+          window.location.reload();
+        },
+      });
+    })(jQuery);
+    </script>
+
 
     <!-- article -->
     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
