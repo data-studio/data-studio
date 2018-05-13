@@ -35,12 +35,12 @@ function eviratec_web_enqueue_scripts () {
     "main-js",
     get_stylesheet_directory_uri() . "/main.js",
     array( "jquery" ),
-    "1.0.0",
+    "1.0.1",
     false
   );
   wp_localize_script(
     'main-js',
-    'eviratec_web_ajax_object',
+    'data_studio_ajax_object',
     array(
       'ajax_url' => admin_url( 'admin-ajax.php' )
     )

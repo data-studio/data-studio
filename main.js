@@ -14,29 +14,35 @@
  * PERFORMANCE OF THIS SOFTWARE.
  */"use strict";
 
-(function ($) {"use strict";
-  $.dsFormToggle = function ( _d ) {
-    _d = _d || {};
-    var $formEl = _d.$formEl;
-    var $toggleBtnEl = _d.$toggleBtnEl;
-    var formHidden = false;
-    hideCreateForm();
-    $toggleBtnEl.click(function () {
-      toggleCreateForm();
-    });
-    function toggleCreateForm () {
-      if (formHidden) {
-        return showCreateForm();
+(function ($, data_studio_ajax_object) {"use strict";
+  data_studio_ajax_object = data_studio_ajax_object || {};
+
+  var _ajax_url = data_studio_ajax_object.ajax_url;
+
+  (function ($) {"use strict";
+    $.dsFormToggle = function ( _d ) {
+      _d = _d || {};
+      var $formEl = _d.$formEl;
+      var $toggleBtnEl = _d.$toggleBtnEl;
+      var formHidden = false;
+      hideCreateForm();
+      $toggleBtnEl.click(function () {
+        toggleCreateForm();
+      });
+      function toggleCreateForm () {
+        if (formHidden) {
+          return showCreateForm();
+        }
+        return hideCreateForm();
       }
-      return hideCreateForm();
-    }
-    function hideCreateForm () {
-      $formEl.hide();
-      formHidden = true;
-    }
-    function showCreateForm () {
-      $formEl.show();
-      formHidden = false;
-    }
-  };
-})(jQuery);
+      function hideCreateForm () {
+        $formEl.hide();
+        formHidden = true;
+      }
+      function showCreateForm () {
+        $formEl.show();
+        formHidden = false;
+      }
+    };
+  })($);
+})(jQuery, data_studio_ajax_object);
