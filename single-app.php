@@ -6,12 +6,81 @@
 
   <?php if (have_posts()): while (have_posts()) : the_post(); ?>
 
+    <?php $user_info = get_userdata( get_current_user_id() ); ?>
+    <div class="back-button-container">
+      <a id="BackButton"
+        href="/apps"
+        title="Apps">
+        <span class="material-icons">
+          chevron_left
+        </span>
+        <span>
+          Apps
+        </span>
+      </a>
+    </div>
+
     <h1><?php echo get_field( 'app_name', get_the_ID() ); ?></h1>
 
     <?php
     $app_id = get_the_ID();
     $logic_groups = DataStudioQuery::getLogicGroupsByApp( $app_id );
     ?>
+
+    <div id="AppNavigation"
+      class="navigation-tabs-wrapper">
+      <ul class="navigation-tabs">
+        <li class="navigation-tab">
+          <a href="#">
+            <span class="spacer"></span>
+            <span class="material-icons">
+              category
+            </span>
+            <span>
+              <!-- Details -->
+              Design
+            </span>
+            <span class="spacer"></span>
+          </a>
+        </li>
+        <li class="navigation-tab">
+          <a href="#">
+            <span class="spacer"></span>
+            <span class="material-icons">
+              comment
+            </span>
+            <span>
+              Discuss
+            </span>
+            <span class="spacer"></span>
+          </a>
+        </li>
+        <li class="navigation-tab">
+          <a href="#">
+            <span class="spacer"></span>
+            <span class="material-icons">
+              settings
+            </span>
+            <span>
+              Configure
+            </span>
+            <span class="spacer"></span>
+          </a>
+        </li>
+        <li class="navigation-tab">
+          <a href="#">
+            <span class="spacer"></span>
+            <span class="material-icons">
+              build
+            </span>
+            <span>
+              Build
+            </span>
+            <span class="spacer"></span>
+          </a>
+        </li>
+      </ul>
+    </div>
 
     <section class="submodel">
       <header>
@@ -100,6 +169,43 @@
     })(jQuery);
     </script>
 
+
+    <!-- <section class="submodel">
+      <header>
+        <h2>Clients</h2>
+        <span class="spacer"></span>
+        <button id="Toggle_CreateClientForm">
+          <span class="material-icons">
+            add
+          </span>
+          <span>
+            Create Client
+          </span>
+        </button>
+      </header>
+      <main>
+
+      </main>
+    </section>
+
+
+    <section class="submodel">
+      <header>
+        <h2>APIs</h2>
+        <span class="spacer"></span>
+        <button id="Toggle_CreateAPIForm">
+          <span class="material-icons">
+            add
+          </span>
+          <span>
+            Create API
+          </span>
+        </button>
+      </header>
+      <main>
+
+      </main>
+    </section> -->
 
     <!-- article -->
     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>

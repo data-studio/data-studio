@@ -23,6 +23,61 @@
 
     <h1><?php echo get_field( 'model_name', get_the_ID() ); ?> Model</h1>
 
+    <div id="ModelNavigation"
+      class="navigation-tabs-wrapper">
+      <ul class="navigation-tabs">
+        <li class="navigation-tab">
+          <a href="#">
+            <span class="spacer"></span>
+            <span class="material-icons">
+              category
+            </span>
+            <span>
+              <!-- Details -->
+              Design
+            </span>
+            <span class="spacer"></span>
+          </a>
+        </li>
+        <li class="navigation-tab">
+          <a href="#">
+            <span class="spacer"></span>
+            <span class="material-icons">
+              comment
+            </span>
+            <span>
+              Discuss
+            </span>
+            <span class="spacer"></span>
+          </a>
+        </li>
+        <li class="navigation-tab">
+          <a href="#">
+            <span class="spacer"></span>
+            <span class="material-icons">
+              settings
+            </span>
+            <span>
+              Configure
+            </span>
+            <span class="spacer"></span>
+          </a>
+        </li>
+        <li class="navigation-tab">
+          <a href="#">
+            <span class="spacer"></span>
+            <span class="material-icons">
+              build
+            </span>
+            <span>
+              Build
+            </span>
+            <span class="spacer"></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
     <?php
     $model_id = get_the_ID();
     $attributes = DataStudioQuery::getAttributesByModel( $model_id );

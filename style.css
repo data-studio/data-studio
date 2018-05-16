@@ -428,6 +428,38 @@ ul.workout.exercise-entry-stats li.exercise-entry-stat span.stat-label {
   color: rgba(0,0,0,0.38);
 }
 
+div#AppNavigation {
+
+}
+div.navigation-tabs-wrapper ul.navigation-tabs {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-top: 1px solid rgba(0,0,0,0.12);
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+}
+div.navigation-tabs-wrapper ul.navigation-tabs li.navigation-tab {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+  width: 25%;
+}
+div.navigation-tabs-wrapper ul.navigation-tabs li.navigation-tab a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 8px;
+  font-size: 1.1em;
+  font-weight: 400;
+}
+div.navigation-tabs-wrapper ul.navigation-tabs li.navigation-tab a span.material-icons {
+  margin-right: 8px;
+  font-size: 18px;
+}
+
 
 /*------------------------------------*\
     IMAGES
