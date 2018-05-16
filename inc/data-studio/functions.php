@@ -20,3 +20,22 @@ require_once 'cmd.php';
 require_once 'rewrites.php';
 
 require_once 'ajax.php';
+
+define( 'DS_APP_BUILD_OPTIONS', 'datastudio_app_build_options' );
+
+function getBuildOptions ( $type = 'app' ) {
+  $options = array();
+  $options = apply_filters(
+    sprintf( 'datastudio_%s_build_options', $type ),
+    $options
+  );
+  return $options;
+}
+
+
+function datastudio_build_app_as_php_opts ( $options ) {
+  $options['php_classes'] = 'PHP Classes';
+  return $options;
+}
+
+add_filter( DS_APP_BUILD_OPTIONS, 'datastudio_build_app_as_php_opts', 10, 3 );

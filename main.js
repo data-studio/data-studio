@@ -95,7 +95,7 @@
       }
     };
   })($);
-  
+
   /**
    * Scroll Feed
    */
@@ -136,6 +136,7 @@
       }
 
       function initFeed () {
+        feed();
         $(window).scroll(function () {
           if (isBusy() || isFinished()) {
             return;
@@ -201,5 +202,56 @@
         return url;
       }
     };
+
+    /**
+     * Tab Group
+     */
+    (function ($) {"use strict";
+      $.dsTabGroup = function ( _d ) {
+        _d = _d || {};
+        var tabs = _d.tabs || [];
+
+        initTabs();
+
+        function initTabs () {
+          for (var i = 0; i < tabs.length; i++) {
+            initTab(tabs[i]);
+          }
+          selectTab(tabs[0]);
+        }
+
+        function initTab ( tab ) {
+          tab.$toggleEl.click(function ( $ev ) {
+            $ev.preventDefault();
+            selectTab(tab);
+          });
+        }
+
+        function hideAllTabContent () {
+          for (var i = 0; i < tabs.length; i++) {
+            hideTabContent(tabs[i]);
+          }
+        }
+
+        function selectTab ( tab ) {
+          hideAllTabContent();
+          showTabContent(tab);
+          for (var i = 0; i < tabs.length; i++) {
+            tabs[i].$toggleEl.removeClass( 'selected' );
+            if (tab === tabs[i]) {
+              tabs[i].$toggleEl.addClass( 'selected' );
+            }
+          }
+        }
+
+        function showTabContent ( tab ) {
+          tab.$contentEl.show();
+        }
+
+        function hideTabContent ( tab ) {
+          tab.$contentEl.hide();
+        }
+      };
+    })($);
   })($);
 })(jQuery, data_studio_ajax_object);

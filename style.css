@@ -80,13 +80,13 @@ input:focus {
   width: 100%;
   margin: 48px auto 0;
   position:relative;
-  padding: 16px 0;
+  padding: 0 0 16px;
 }
 /* header */
 .header {
   height: 48px;
   max-height: 48px;
-  background-color: rgba(22,22,22,1);
+  background-color: #263238;
   color: rgba(255,255,255,1);
   position: fixed;
   top: 0;
@@ -192,7 +192,10 @@ button#ToggleSidebar_Button {
 \*------------------------------------*/
 
 h1 {
-  margin: 0 16px 0.67em;
+  padding: 0 16px 0.67em;
+  background: #546E7A;
+  color: rgba(255,255,255,1);
+  margin: 0;
 }
 h2,
 h3,
@@ -238,14 +241,17 @@ div.eviratec-web.eviratec-form p.form-title {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0 16px;
+  padding: 8px 16px 0;
+  background: #546E7A;
+  color: rgba(255,255,255,1);
 }
 a#BackButton {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 4px 12px 4px 0;
+  padding: 12px 12px 0 0;
   font-size: 1.3em;
+  color: rgba(255,255,255,0.7);
 }
 
 /* */
@@ -438,14 +444,17 @@ div.navigation-tabs-wrapper ul.navigation-tabs {
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-top: 1px solid rgba(0,0,0,0.12);
-  border-bottom: 1px solid rgba(0,0,0,0.12);
+  background: #455A64;
+  color: rgba(255,255,255,1);
 }
 div.navigation-tabs-wrapper ul.navigation-tabs li.navigation-tab {
   display: flex;
   flex-direction: column;
   flex: auto;
   width: 25%;
+}
+div.navigation-tabs-wrapper ul.navigation-tabs li.navigation-tab.selected {
+  background-color: rgba(0,0,0,0.5);
 }
 div.navigation-tabs-wrapper ul.navigation-tabs li.navigation-tab a {
   display: flex;
@@ -454,6 +463,7 @@ div.navigation-tabs-wrapper ul.navigation-tabs li.navigation-tab a {
   padding: 12px 8px;
   font-size: 1.1em;
   font-weight: 400;
+  color: rgba(255,255,255,1);
 }
 div.navigation-tabs-wrapper ul.navigation-tabs li.navigation-tab a span.material-icons {
   margin-right: 8px;
