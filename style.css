@@ -225,6 +225,20 @@ section.submodel header button {
 div.eviratec-web.eviratec-form {
   padding: 16px;
 }
+div.eviratec-web.eviratec-form div.form-field {
+  margin-bottom: 16px;
+  display: flex;
+  font-size: 1.3em;
+}
+div.datastudio.datastudio-options {
+  padding: 0;
+}
+div.datastudio.datastudio-options div.form-field {
+  padding: 16px;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+  display: flex;
+  font-size: 1.3em;
+}
 .create-form-wrapper {
   padding-top: 16px;
   background-color: rgba(0,0,0,0.12);
@@ -367,11 +381,6 @@ form input[type=submit] {
   color: rgba(0,0,0,0.87);
   border: 1px solid #ddd;
 }
-div.eviratec-web.eviratec-form div.form-field {
-  margin-bottom: 16px;
-  display: flex;
-  font-size: 1.3em;
-}
 
 ul#DashboardMenu {
   padding: 0 8px;
@@ -475,6 +484,36 @@ div.navigation-tabs-wrapper ul.navigation-tabs li.navigation-tab a span.material
   font-size: 18px;
 }
 
+
+/*------------------------------------*\
+    COMMENTS
+\*------------------------------------*/
+
+
+#Discussion ul.comments {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+#Discussion ul.comments li.comment.depth-1 {
+
+}
+#Discussion ul.comments li.comment.depth-1 div.comment-body {
+  padding: 16px;
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+}
+#Discussion ul.comments li.comment.depth-1 div.comment-body div.comment-author.vcard img.avatar {
+  float: left;
+  max-height: 32px;
+  max-width: 32px;
+  margin-right: 16px;
+}
+#Discussion ul.comments li.comment.depth-1 main {
+  font-size: 1.3em;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
 
 /*------------------------------------*\
     IMAGES

@@ -351,7 +351,7 @@ function html5blankcomments($comment, $args, $depth)
     ?>
   </div>
 
-  <?php comment_text() ?>
+  <main><?php comment_text() ?></main>
 
   <div class="reply">
   <?php comment_reply_link(array_merge( $args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>

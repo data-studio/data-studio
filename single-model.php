@@ -87,7 +87,7 @@
         <?php get_template_part( 'parts/tabs/discuss-model' ); ?>
       </div>
       <div class="tab-configure">
-        Configure Model
+        <?php get_template_part( 'parts/tabs/configure-model' ); ?>
       </div>
       <div class="tab-build">
         <?php get_template_part( 'parts/tabs/build-model' ); ?>

@@ -86,7 +86,7 @@
         <?php get_template_part( 'parts/tabs/discuss-app' ); ?>
       </div>
       <div class="tab-configure">
-        Configure App
+        <?php get_template_part( 'parts/tabs/configure-app' ); ?>
       </div>
       <div class="tab-build">
         <?php get_template_part( 'parts/tabs/build-app' ); ?>

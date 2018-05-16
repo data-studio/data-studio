@@ -87,7 +87,7 @@
         <?php get_template_part( 'parts/tabs/discuss-logic_group' ); ?>
       </div>
       <div class="tab-configure">
-        Configure Logic Group
+        <?php get_template_part( 'parts/tabs/configure-logic_group' ); ?>
       </div>
       <div class="tab-build">
         <?php get_template_part( 'parts/tabs/build-logic_group' ); ?>
