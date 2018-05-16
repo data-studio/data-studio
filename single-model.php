@@ -90,7 +90,7 @@
         Configure Model
       </div>
       <div class="tab-build">
-        Build Model
+        <?php get_template_part( 'parts/tabs/build-model' ); ?>
       </div>
     </div>
 

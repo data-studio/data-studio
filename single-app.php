@@ -89,7 +89,7 @@
         Configure App
       </div>
       <div class="tab-build">
-        Build App
+        <?php get_template_part( 'parts/tabs/build-app' ); ?>
       </div>
     </div>
 

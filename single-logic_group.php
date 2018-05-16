@@ -90,7 +90,7 @@
         Configure Logic Group
       </div>
       <div class="tab-build">
-        Build Logic Group
+        <?php get_template_part( 'parts/tabs/build-logic_group' ); ?>
       </div>
     </div>
 
