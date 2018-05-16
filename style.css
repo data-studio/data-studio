@@ -452,9 +452,10 @@ div.navigation-tabs-wrapper ul.navigation-tabs li.navigation-tab {
   flex-direction: column;
   flex: auto;
   width: 25%;
+  transition: all 333ms;
 }
 div.navigation-tabs-wrapper ul.navigation-tabs li.navigation-tab.selected {
-  background-color: rgba(0,0,0,0.5);
+  background-color: #eee;
 }
 div.navigation-tabs-wrapper ul.navigation-tabs li.navigation-tab a {
   display: flex;
@@ -464,6 +465,10 @@ div.navigation-tabs-wrapper ul.navigation-tabs li.navigation-tab a {
   font-size: 1.1em;
   font-weight: 400;
   color: rgba(255,255,255,1);
+  transition: all 333ms;
+}
+div.navigation-tabs-wrapper ul.navigation-tabs li.navigation-tab.selected a {
+  color: rgba(0,0,0,0.87);
 }
 div.navigation-tabs-wrapper ul.navigation-tabs li.navigation-tab a span.material-icons {
   margin-right: 8px;
