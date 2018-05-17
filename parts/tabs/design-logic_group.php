@@ -40,7 +40,9 @@ $models = DataStudioQuery::getModelsByLogicGroup( $logic_group_id );
       </ul>
     </div>
     <?php else : ?>
-    <p>You haven't added any models to this logic group.</p>
+    <div class="no-results">
+      <p>You haven't added any models to this logic group.</p>
+    </div>
     <?php endif; ?>
   </main>
 </section>
@@ -111,7 +113,9 @@ $queries = DataStudioQuery::getQueriesByLogicGroup( $logic_group_id );
       </ul>
     </div>
     <?php else : ?>
-    <p>You haven't added any queries to this logic group.</p>
+    <div class="no-results">
+      <p>You haven't added any queries to this logic group.</p>
+    </div>
     <?php endif; ?>
   </main>
 </section>
@@ -181,7 +185,9 @@ $commands = DataStudioQuery::getCommandsByLogicGroup( $logic_group_id );
       </ul>
     </div>
     <?php else : ?>
-    <p>You haven't added any commands to this logic group.</p>
+    <div class="no-results">
+      <p>You haven't added any commands to this logic group.</p>
+    </div>
     <?php endif; ?>
   </main>
 </section>

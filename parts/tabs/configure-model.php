@@ -3,6 +3,18 @@
   <div id="ConfigureModelForm"
     class="datastudio datastudio-options">
     <div class="form-field">
+      <label for="LogicGroupName">
+        Author
+      </label>
+
+      <span class="spacer"></span>
+
+      <span>
+        <?php echo get_the_author_meta( 'user_nicename' ); ?>
+        &lt;<?php echo get_the_author_meta( 'user_email' ); ?>&gt;
+      </span>
+    </div>
+    <!-- <div class="form-field">
       <label for="ModelID">
         Model ID
       </label>
@@ -12,7 +24,7 @@
       <span>
         <?php the_ID(); ?>
       </span>
-    </div>
+    </div> -->
     <div class="form-field">
       <label for="ModelName">
         Model Name

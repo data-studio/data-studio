@@ -48,10 +48,9 @@ $attributes = DataStudioQuery::getAttributesByModel( $model_id );
       </div>
     </div>
     <?php else : ?>
-    <div class="content-cards">
-      <ul class="cards"></ul>
+    <div class="no-results">
+      <p>You haven't added any attributes to this model.</p>
     </div>
-    <p>You haven't added any attributes to this model.</p>
     <?php endif; ?>
   </main>
 </section>

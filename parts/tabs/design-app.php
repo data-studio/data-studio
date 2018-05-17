@@ -48,7 +48,9 @@ $logic_groups = DataStudioQuery::getLogicGroupsByApp( $app_id );
       </div>
     </div>
     <?php else : ?>
-    <p>You haven't added any logic groups to this app.</p>
+    <div class="no-results">
+      <p>You haven't added any logic groups to this app.</p>
+    </div>
     <?php endif; ?>
   </main>
 </section>
