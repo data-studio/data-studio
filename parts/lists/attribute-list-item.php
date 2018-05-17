@@ -11,14 +11,14 @@
       <h3>
         <span><?php echo get_field( 'attribute_name', get_the_ID() ); ?></span>
       </h3>
-      <p>
+      <!-- <p>
         Attribute
-      </p>
+      </p> -->
     </div>
     <span class="spacer"></span>
-    <span class="attribute-type">
+    <!-- <span class="attribute-type">
       Type
-    </span>
+    </span> -->
     <span class="material-icons">
       chevron_right
     </span>

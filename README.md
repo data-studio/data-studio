@@ -1,5 +1,7 @@
 # Data Studio by Eviratec
 
+WP export in: `./doc/db/datastudiobyeviratec...xml`
+
 ## Models
 
 ```
