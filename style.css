@@ -2,7 +2,7 @@
   Theme Name: Data Studio by Eviratec
   Theme URI: http://www.datastudio.xyz
   Description: Data Studio by Eviratec
-  Version: 1.0.0
+  Version: 0.3.0
   Author: Callan Milne
   Author URI: http://calmilne.com
   Tags: Blank, HTML5, CSS3
@@ -494,6 +494,28 @@ div.navigation-tabs-wrapper ul.navigation-tabs li.navigation-tab.selected a {
 div.navigation-tabs-wrapper ul.navigation-tabs li.navigation-tab a span.material-icons {
   margin-right: 8px;
   font-size: 18px;
+}
+
+ul li.build-list-item > div, ul li.build-list-item > ul div, ul li.build-list-item div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 8px;
+  font-size: 1.2em;
+}
+
+ul li.build-list-item ul {
+  list-style: none;
+  padding-left: 24px;
+}
+
+ul li.build-list-item ul li, ul li.build-list-item {
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+
+ul li.build-list-item .material-icons {
+  color: rgba(0,0,0,0.38);
 }
 
 
