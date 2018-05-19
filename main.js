@@ -44,6 +44,7 @@
       }
       function showCreateForm () {
         $formEl.show();
+        $($formEl.find('input:visible')[0]).focus();
         formHidden = false;
       }
     };

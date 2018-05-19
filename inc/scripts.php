@@ -35,7 +35,7 @@ function eviratec_web_enqueue_scripts () {
     "main-js",
     get_stylesheet_directory_uri() . "/main.js",
     array( "jquery" ),
-    "1.0.6",
+    "1.0.7",
     false
   );
   wp_localize_script(
