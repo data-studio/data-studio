@@ -22,6 +22,7 @@ class DataStudioPostTypes {
   public function registerPostTypes () {
     $this->registerAppPostType();
     $this->registerLogicGroupPostType();
+    $this->registerWebServicePostType();
     $this->registerModelPostType();
     $this->registerAttributePostType();
     $this->registerCommandPostType();
@@ -47,6 +48,17 @@ class DataStudioPostTypes {
       'name'             => 'logic_group',
       'slug'             => 'logic-group',
       'type_name'        => 'logic_group'
+    ));
+  }
+  private function registerWebServicePostType () {
+    $this->registerPostType(array(
+      'label_single'     => 'Web Service',
+      'label_single_lc'  => 'web service',
+      'label_multi'      => 'Web Services',
+      'label_multi_lc'   => 'web services',
+      'name'             => 'web_service',
+      'slug'             => 'web-service',
+      'type_name'        => 'web_service'
     ));
   }
   private function registerModelPostType () {

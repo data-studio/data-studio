@@ -49,6 +49,12 @@ function data_studio_rewrite () {
   );
 
   add_rewrite_rule(
+    '^web-service/(.+)/$',
+    'index.php?post_type=web_service&p=$matches[1]',
+    'top'
+  );
+
+  add_rewrite_rule(
     '^model/(.+)/$',
     'index.php?post_type=model&p=$matches[1]',
     'top'

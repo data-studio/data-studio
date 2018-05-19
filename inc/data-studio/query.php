@@ -55,6 +55,27 @@ class DataStudioQuery {
     ) );
   }
 
+  public static function getWebServicesByApp ( $app_id, $query = array() ) {
+    return new WP_Query( array_merge(
+      array ( 'posts_per_page' => 100 ),
+      $query,
+      array(
+        'post_type'      => 'web_service',
+        'author'         => wp_get_current_user()->ID,
+        'meta_key'       => 'web_service_name',
+        'orderby'        => 'meta_value',
+        'order'          => 'asc',
+        'meta_query'     => array(
+          array(
+            'key'     => 'web_service_app_id',
+            'value'   => (int) $app_id,
+            // 'compare' => 'IN',
+          ),
+        ),
+      )
+    ) );
+  }
+
   public static function getModelsByLogicGroup ( $logic_group_id, $query = array() ) {
     return new WP_Query( array_merge(
       array ( 'posts_per_page' => 100 ),

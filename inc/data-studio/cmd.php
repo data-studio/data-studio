@@ -64,6 +64,26 @@ class DataStudioCmd {
     return $logic_group_id;
   }
 
+  public static function createWebService ( $app_id, $name ) {
+    $web_service_id = null;
+
+    $web_service_id = wp_insert_post(array(
+      'post_author'  => wp_get_current_user()->ID,
+      'post_content' => $name,
+      'post_title'   => DataStudioCmd::generateUniqid(),
+      'post_status'  => 'publish',
+      'post_type'    => 'web_service',
+    ));
+
+    update_field( 'web_service_app_id', $app_id, $web_service_id );
+
+    update_field( 'web_service_name', $name, $web_service_id );
+
+    update_field( 'web_service_count_operations', '0', $logic_group_id );
+
+    return $web_service_id;
+  }
+
   public static function createModel ( $logic_group_id, $name ) {
     $model_id = null;
 

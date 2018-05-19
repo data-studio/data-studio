@@ -54,6 +54,14 @@ function data_studio_ajax () {
         wp_die();
         break;
 
+      case 'createWebService':
+        $response = DataStudioCmd::createWebService(
+           $_REQUEST['args']['WebServiceAppID'],
+           $_REQUEST['args']['WebServiceName']
+        );
+        wp_die();
+        break;
+
       case 'createModel':
         $response = DataStudioCmd::createModel(
            $_REQUEST['args']['ModelLogicGroupID'],
