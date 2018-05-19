@@ -21,9 +21,103 @@
       </a>
     </div>
 
-    <h1><?php echo get_field( 'command_name', get_the_ID() ); ?> Command</h1>
+    <h1><?php echo get_field( 'command_name', get_the_ID() ); ?></h1>
 
-    <h2>Logic</h2>
+    <div id="CommandNavigation"
+      class="navigation-tabs-wrapper">
+      <ul class="navigation-tabs">
+        <li class="navigation-tab tab-design">
+          <a href="#">
+            <span class="spacer"></span>
+            <span class="material-icons">
+              category
+            </span>
+            <span>
+              <!-- Details -->
+              Design
+            </span>
+            <span class="spacer"></span>
+          </a>
+        </li>
+        <li class="navigation-tab tab-discuss">
+          <a href="#">
+            <span class="spacer"></span>
+            <span class="material-icons">
+              comment
+            </span>
+            <span>
+              Discuss
+            </span>
+            <span class="spacer"></span>
+          </a>
+        </li>
+        <li class="navigation-tab tab-configure">
+          <a href="#">
+            <span class="spacer"></span>
+            <span class="material-icons">
+              settings
+            </span>
+            <span>
+              Configure
+            </span>
+            <span class="spacer"></span>
+          </a>
+        </li>
+        <li class="navigation-tab tab-build">
+          <a href="#">
+            <span class="spacer"></span>
+            <span class="material-icons">
+              build
+            </span>
+            <span>
+              Build
+            </span>
+            <span class="spacer"></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div id="CommandTabbedContent"
+      class="tab-contents-wrapper">
+      <div class="tab-design">
+        <?php get_template_part( 'parts/tabs/design-command' ); ?>
+      </div>
+      <div class="tab-discuss">
+        <?php get_template_part( 'parts/tabs/discuss-command' ); ?>
+      </div>
+      <div class="tab-configure">
+        <?php get_template_part( 'parts/tabs/configure-command' ); ?>
+      </div>
+      <div class="tab-build">
+        <?php get_template_part( 'parts/tabs/build-command' ); ?>
+      </div>
+    </div>
+
+    <script>
+    (function ($) {"use strict";
+      $.dsTabGroup({
+        tabs: [
+          {
+            $toggleEl: $( '#CommandNavigation li.tab-design' ),
+            $contentEl: $( '#CommandTabbedContent div.tab-design' ),
+          },
+          {
+            $toggleEl: $( '#CommandNavigation li.tab-discuss' ),
+            $contentEl: $( '#CommandTabbedContent div.tab-discuss' ),
+          },
+          {
+            $toggleEl: $( '#CommandNavigation li.tab-configure' ),
+            $contentEl: $( '#CommandTabbedContent div.tab-configure' ),
+          },
+          {
+            $toggleEl: $( '#CommandNavigation li.tab-build' ),
+            $contentEl: $( '#CommandTabbedContent div.tab-build' ),
+          },
+        ],
+      })
+    })(jQuery);
+    </script>
 
     <!-- article -->
     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -56,10 +150,6 @@
 
       <!-- <p><?php //_e( 'This post was written by ', 'html5blank' ); the_author(); ?></p> -->
 
-      <h2>Comments</h2>
-
-      <?php comments_template(); ?>
-
     </article>
     <!-- /article -->
 
@@ -80,95 +170,6 @@
   </section>
   <!-- /section -->
   </main>
-
-  <script>
-  (function ($) {"use strict";
-
-    var busy = false;
-    var finished = false;
-
-    var offset = 0;
-    var lastScrollMax = 0;
-
-    $(document).ready(function () {
-      initFeed();
-    });
-
-    function isBusy () {
-      return true === busy;
-    }
-
-    function setBusy ( newValue ) {
-      busy = true === newValue ? true : false;
-    }
-
-    function isFinished () {
-      $("div.content-cards div.transactions-loading").hide();
-      return true === finished;
-    }
-
-    function setFinished ( newValue ) {
-      finished = true === newValue ? true : false;
-    }
-
-    function initFeed () {
-      $(window).scroll(function () {
-        if (isBusy() || isFinished()) {
-          return;
-        }
-
-        setBusy(true);
-
-        var a = $(window)[0].scrollY;
-        var b = $(window)[0].innerHeight;
-        var c = a+b;
-        var x = $("div.content-cards ul.cards").height();
-
-        var needsMore = c > lastScrollMax && c > x;
-        if (needsMore) {
-          feed();
-          console.log($(window), a, b, c, x);
-        }
-
-        lastScrollMax = c;
-      });
-    }
-
-    function feed () {
-      refreshOffset();
-
-      var req = $.get(
-        '/wp-admin/admin-ajax.php?action=eviratec_money'
-        + '&type=getTransactionsByWallet'
-        + '&wallet_id=' + <?php the_ID(); ?>
-        + '&offset=' + offset
-      );
-
-      req.success(function (res) {
-        console.log(arguments);
-        var $newEls = $(res);
-        if (0 === $newEls.length || '' === res.trim()) {
-          isFinished();
-          return;
-        }
-        $newEls.appendTo($("div.content-cards ul.cards"));
-      });
-
-      req.error(function () {
-        console.log(arguments);
-      });
-
-      req.always(function () {
-        setBusy(false);
-      });
-    }
-
-    function refreshOffset () {
-      offset = $("div.content-cards ul.cards li.card").length;
-    }
-
-  })(jQuery);
-  </script>
 
 <?php get_sidebar(); ?>
 
