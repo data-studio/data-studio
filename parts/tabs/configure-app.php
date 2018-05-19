@@ -3,7 +3,7 @@
   <div id="ConfigureAppForm"
     class="datastudio datastudio-options">
     <div class="form-field">
-      <label for="LogicGroupName">
+      <label for="AppAuthor">
         Author
       </label>
 

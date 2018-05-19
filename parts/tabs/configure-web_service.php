@@ -3,7 +3,7 @@
   <div id="ConfigureWebServiceForm"
     class="datastudio datastudio-options">
     <div class="form-field">
-      <label for="WebServiceName">
+      <label for="WebServiceAuthor">
         Author
       </label>
 
