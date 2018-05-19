@@ -81,16 +81,16 @@
     <div id="ModelTabbedContent"
       class="tab-contents-wrapper">
       <div class="tab-design">
-        <?php get_template_part( 'parts/tabs/design-model' ); ?>
+        <?php get_template_part( 'parts/tabs/model/design-model' ); ?>
       </div>
       <div class="tab-discuss">
-        <?php get_template_part( 'parts/tabs/discuss-model' ); ?>
+        <?php get_template_part( 'parts/tabs/model/discuss-model' ); ?>
       </div>
       <div class="tab-configure">
-        <?php get_template_part( 'parts/tabs/configure-model' ); ?>
+        <?php get_template_part( 'parts/tabs/model/configure-model' ); ?>
       </div>
       <div class="tab-build">
-        <?php get_template_part( 'parts/tabs/build-model' ); ?>
+        <?php get_template_part( 'parts/tabs/model/build-model' ); ?>
       </div>
     </div>
 

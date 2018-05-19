@@ -80,16 +80,16 @@
     <div id="AppTabbedContent"
       class="tab-contents-wrapper">
       <div class="tab-design">
-        <?php get_template_part( 'parts/tabs/design-app' ); ?>
+        <?php get_template_part( 'parts/tabs/app/design-app' ); ?>
       </div>
       <div class="tab-discuss">
-        <?php get_template_part( 'parts/tabs/discuss-app' ); ?>
+        <?php get_template_part( 'parts/tabs/app/discuss-app' ); ?>
       </div>
       <div class="tab-configure">
-        <?php get_template_part( 'parts/tabs/configure-app' ); ?>
+        <?php get_template_part( 'parts/tabs/app/configure-app' ); ?>
       </div>
       <div class="tab-build">
-        <?php get_template_part( 'parts/tabs/build-app' ); ?>
+        <?php get_template_part( 'parts/tabs/app/build-app' ); ?>
       </div>
     </div>
 

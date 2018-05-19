@@ -81,16 +81,16 @@
     <div id="CommandTabbedContent"
       class="tab-contents-wrapper">
       <div class="tab-design">
-        <?php get_template_part( 'parts/tabs/design-command' ); ?>
+        <?php get_template_part( 'parts/tabs/command/design-command' ); ?>
       </div>
       <div class="tab-discuss">
-        <?php get_template_part( 'parts/tabs/discuss-command' ); ?>
+        <?php get_template_part( 'parts/tabs/command/discuss-command' ); ?>
       </div>
       <div class="tab-configure">
-        <?php get_template_part( 'parts/tabs/configure-command' ); ?>
+        <?php get_template_part( 'parts/tabs/command/configure-command' ); ?>
       </div>
       <div class="tab-build">
-        <?php get_template_part( 'parts/tabs/build-command' ); ?>
+        <?php get_template_part( 'parts/tabs/command/build-command' ); ?>
       </div>
     </div>
 

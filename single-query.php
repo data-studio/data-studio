@@ -81,16 +81,16 @@
     <div id="QueryTabbedContent"
       class="tab-contents-wrapper">
       <div class="tab-design">
-        <?php get_template_part( 'parts/tabs/design-query' ); ?>
+        <?php get_template_part( 'parts/tabs/query/design-query' ); ?>
       </div>
       <div class="tab-discuss">
-        <?php get_template_part( 'parts/tabs/discuss-query' ); ?>
+        <?php get_template_part( 'parts/tabs/query/discuss-query' ); ?>
       </div>
       <div class="tab-configure">
-        <?php get_template_part( 'parts/tabs/configure-query' ); ?>
+        <?php get_template_part( 'parts/tabs/query/configure-query' ); ?>
       </div>
       <div class="tab-build">
-        <?php get_template_part( 'parts/tabs/build-query' ); ?>
+        <?php get_template_part( 'parts/tabs/query/build-query' ); ?>
       </div>
     </div>
 

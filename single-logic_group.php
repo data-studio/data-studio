@@ -81,16 +81,16 @@
     <div id="LogicGroupTabbedContent"
       class="tab-contents-wrapper">
       <div class="tab-design">
-        <?php get_template_part( 'parts/tabs/design-logic_group' ); ?>
+        <?php get_template_part( 'parts/tabs/logic_group/design-logic_group' ); ?>
       </div>
       <div class="tab-discuss">
-        <?php get_template_part( 'parts/tabs/discuss-logic_group' ); ?>
+        <?php get_template_part( 'parts/tabs/logic_group/discuss-logic_group' ); ?>
       </div>
       <div class="tab-configure">
-        <?php get_template_part( 'parts/tabs/configure-logic_group' ); ?>
+        <?php get_template_part( 'parts/tabs/logic_group/configure-logic_group' ); ?>
       </div>
       <div class="tab-build">
-        <?php get_template_part( 'parts/tabs/build-logic_group' ); ?>
+        <?php get_template_part( 'parts/tabs/logic_group/build-logic_group' ); ?>
       </div>
     </div>
 

@@ -81,16 +81,16 @@
     <div id="WebServiceTabbedContent"
       class="tab-contents-wrapper">
       <div class="tab-design">
-        <?php get_template_part( 'parts/tabs/design-web_service' ); ?>
+        <?php get_template_part( 'parts/tabs/web_service/design-web_service' ); ?>
       </div>
       <div class="tab-discuss">
-        <?php get_template_part( 'parts/tabs/discuss-web_service' ); ?>
+        <?php get_template_part( 'parts/tabs/web_service/discuss-web_service' ); ?>
       </div>
       <div class="tab-configure">
-        <?php get_template_part( 'parts/tabs/configure-web_service' ); ?>
+        <?php get_template_part( 'parts/tabs/web_service/configure-web_service' ); ?>
       </div>
       <div class="tab-build">
-        <?php get_template_part( 'parts/tabs/build-web_service' ); ?>
+        <?php get_template_part( 'parts/tabs/web_service/build-web_service' ); ?>
       </div>
     </div>
 
