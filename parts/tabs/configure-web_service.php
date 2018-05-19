@@ -36,6 +36,50 @@
         <?php echo get_field( 'web_service_name', get_the_ID() ); ?>
       </span>
     </div>
+    <div class="form-field">
+      <label for="WebServiceName">
+        Web Service Version
+      </label>
+
+      <span class="spacer"></span>
+
+      <span>
+        <!-- v1.0.0 -->
+      </span>
+    </div>
+    <div class="form-field">
+      <label for="WebServiceName">
+        Web Service Host
+      </label>
+
+      <span class="spacer"></span>
+
+      <span>
+        <!-- api.datastudio.xyz -->
+      </span>
+    </div>
+    <div class="form-field">
+      <label for="WebServiceName">
+        Web Service Path Prefix
+      </label>
+
+      <span class="spacer"></span>
+
+      <span>
+        <!-- rest/v1/ -->
+      </span>
+    </div>
+    <div class="form-field">
+      <label for="WebServiceName">
+        Web Service Security
+      </label>
+
+      <span class="spacer"></span>
+
+      <span>
+        <!-- OAuth v2.0 -->
+      </span>
+    </div>
   </div>
 
   <h2>Sharing</h2>
