@@ -22,6 +22,7 @@ require_once 'rewrites.php';
 require_once 'ajax.php';
 
 define( 'DS_APP_BUILD_OPTIONS', 'datastudio_app_build_options' );
+define( 'DS_WEB_SERVICE_BUILD_OPTIONS', 'datastudio_web_service_build_options' );
 
 function getBuildOptions ( $type = 'app' ) {
   $options = array();
@@ -38,4 +39,11 @@ function datastudio_build_app_as_php_opts ( $options ) {
   return $options;
 }
 
+
+function datastudio_build_web_service_as_openapi_opts ( $options ) {
+  $options['spec_openapi_v3'] = 'Spec: OpenAPI v3.0.1';
+  return $options;
+}
+
 add_filter( DS_APP_BUILD_OPTIONS, 'datastudio_build_app_as_php_opts', 10, 3 );
+add_filter( DS_WEB_SERVICE_BUILD_OPTIONS, 'datastudio_build_web_service_as_openapi_opts', 10, 3 );
