@@ -62,6 +62,23 @@ function data_studio_ajax () {
         wp_die();
         break;
 
+      case 'createPath':
+        $response = DataStudioCmd::createPath(
+           $_REQUEST['args']['PathWebServiceID'],
+           $_REQUEST['args']['PathUri']
+        );
+        wp_die();
+        break;
+
+      case 'createOperation':
+        $response = DataStudioCmd::createOperation(
+           $_REQUEST['args']['OperationPathID'],
+           $_REQUEST['args']['OperationName'],
+           $_REQUEST['args']['OperationType']
+        );
+        wp_die();
+        break;
+
       case 'createModel':
         $response = DataStudioCmd::createModel(
            $_REQUEST['args']['ModelLogicGroupID'],
@@ -93,17 +110,12 @@ function data_studio_ajax () {
         break;
 
       case 'getLogicGroupsByApp':
-        // &type=getEvents&offset=8
         $logic_groups = DataStudioQuery::getLogicGroupsByApp(
           $_REQUEST['app_id'],
           [
             'offset' => $_REQUEST['offset'],
           ]
         );
-        // $response = [
-        //   $events->posts,
-        //   $events->post_count,
-        // ];
         header( 'Content-Type: text/html;charset=utf-8' );
         ?>
         <?php if ($logic_groups->have_posts()) : ?>
@@ -115,18 +127,67 @@ function data_studio_ajax () {
         wp_die();
         break;
 
+      case 'getWebServicesByApp':
+        $web_services = DataStudioQuery::getWebServicesByApp(
+          $_REQUEST['app_id'],
+          [
+            'offset' => $_REQUEST['offset'],
+          ]
+        );
+        header( 'Content-Type: text/html;charset=utf-8' );
+        ?>
+        <?php if ($web_services->have_posts()) : ?>
+        <?php while ($web_services->have_posts()) : ?>
+          <?php $web_services->the_post(); ?>
+          <?php get_template_part( 'parts/lists/web_service-list-item'); ?>
+        <?php endwhile; endif; ?>
+        <?php
+        wp_die();
+        break;
+
+      case 'getPathsByWebService':
+        $operations = DataStudioQuery::getPathsByWebService(
+          $_REQUEST['operation_id'],
+          [
+            'offset' => $_REQUEST['offset'],
+          ]
+        );
+        header( 'Content-Type: text/html;charset=utf-8' );
+        ?>
+        <?php if ($operations->have_posts()) : ?>
+        <?php while ($operations->have_posts()) : ?>
+          <?php $operations->the_post(); ?>
+          <?php get_template_part( 'parts/lists/operation-list-item'); ?>
+        <?php endwhile; endif; ?>
+        <?php
+        wp_die();
+        break;
+
+      case 'getOperationsByPath':
+        $paths = DataStudioQuery::getOperationsByPath(
+          $_REQUEST['path_id'],
+          [
+            'offset' => $_REQUEST['offset'],
+          ]
+        );
+        header( 'Content-Type: text/html;charset=utf-8' );
+        ?>
+        <?php if ($paths->have_posts()) : ?>
+        <?php while ($paths->have_posts()) : ?>
+          <?php $paths->the_post(); ?>
+          <?php get_template_part( 'parts/lists/path-list-item'); ?>
+        <?php endwhile; endif; ?>
+        <?php
+        wp_die();
+        break;
+
       case 'getModelsByLogicGroup':
-        // &type=getEvents&offset=8
         $models = DataStudioQuery::getModelsByLogicGroup(
           $_REQUEST['logic_group_id'],
           [
             'offset' => $_REQUEST['offset'],
           ]
         );
-        // $response = [
-        //   $events->posts,
-        //   $events->post_count,
-        // ];
         header( 'Content-Type: text/html;charset=utf-8' );
         ?>
         <?php if ($models->have_posts()) : ?>
@@ -139,17 +200,12 @@ function data_studio_ajax () {
         break;
 
       case 'getAttributesByModel':
-        // &type=getEvents&offset=8
         $attributes = DataStudioQuery::getAttributesByModel(
           $_REQUEST['model_id'],
           [
             'offset' => $_REQUEST['offset'],
           ]
         );
-        // $response = [
-        //   $events->posts,
-        //   $events->post_count,
-        // ];
         header( 'Content-Type: text/html;charset=utf-8' );
         ?>
         <?php if ($attributes->have_posts()) : ?>
@@ -162,17 +218,12 @@ function data_studio_ajax () {
         break;
 
       case 'getCommandsByLogicGroup':
-        // &type=getEvents&offset=8
         $commands = DataStudioQuery::getCommandsByLogicGroup(
           $_REQUEST['logic_group_id'],
           [
             'offset' => $_REQUEST['offset'],
           ]
         );
-        // $response = [
-        //   $events->posts,
-        //   $events->post_count,
-        // ];
         header( 'Content-Type: text/html;charset=utf-8' );
         ?>
         <?php if ($commands->have_posts()) : ?>
@@ -185,17 +236,12 @@ function data_studio_ajax () {
         break;
 
       case 'getQueriesByLogicGroup':
-        // &type=getEvents&offset=8
         $queries = DataStudioQuery::getQueriesByLogicGroup(
           $_REQUEST['logic_group_id'],
           [
             'offset' => $_REQUEST['offset'],
           ]
         );
-        // $response = [
-        //   $events->posts,
-        //   $events->post_count,
-        // ];
         header( 'Content-Type: text/html;charset=utf-8' );
         ?>
         <?php if ($queries->have_posts()) : ?>

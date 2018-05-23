@@ -23,6 +23,8 @@ class DataStudioPostTypes {
     $this->registerAppPostType();
     $this->registerLogicGroupPostType();
     $this->registerWebServicePostType();
+    $this->registerPathPostType();
+    $this->registerOperationPostType();
     $this->registerModelPostType();
     $this->registerAttributePostType();
     $this->registerCommandPostType();
@@ -59,6 +61,28 @@ class DataStudioPostTypes {
       'name'             => 'web_service',
       'slug'             => 'web-service',
       'type_name'        => 'web_service'
+    ));
+  }
+  private function registerPathPostType () {
+    $this->registerPostType(array(
+      'label_single'     => 'Path',
+      'label_single_lc'  => 'path',
+      'label_multi'      => 'Paths',
+      'label_multi_lc'   => 'paths',
+      'name'             => 'path',
+      'slug'             => 'path',
+      'type_name'        => 'path'
+    ));
+  }
+  private function registerOperationPostType () {
+    $this->registerPostType(array(
+      'label_single'     => 'Operation',
+      'label_single_lc'  => 'operation',
+      'label_multi'      => 'Operations',
+      'label_multi_lc'   => 'operations',
+      'name'             => 'operation',
+      'slug'             => 'operation',
+      'type_name'        => 'operation'
     ));
   }
   private function registerModelPostType () {

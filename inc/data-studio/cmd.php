@@ -79,9 +79,48 @@ class DataStudioCmd {
 
     update_field( 'web_service_name', $name, $web_service_id );
 
-    update_field( 'web_service_count_operations', '0', $logic_group_id );
+    update_field( 'web_service_count_paths', '0', $logic_group_id );
 
     return $web_service_id;
+  }
+
+  public static function createPath ( $web_service_id, $uri ) {
+    $path_id = null;
+
+    $path_id = wp_insert_post(array(
+      'post_author'  => wp_get_current_user()->ID,
+      'post_content' => $uri,
+      'post_title'   => DataStudioCmd::generateUniqid(),
+      'post_status'  => 'publish',
+      'post_type'    => 'path',
+    ));
+
+    update_field( 'path_web_service_id', $web_service_id, $path_id );
+
+    update_field( 'path_uri', $uri, $path_id );
+
+    update_field( 'path_count_operations', '0', $path_id );
+
+    return $path_id;
+  }
+
+  public static function createOperation ( $path_id, $name, $type ) {
+    $operation_id = null;
+
+    $operation_id = wp_insert_post(array(
+      'post_author'  => wp_get_current_user()->ID,
+      'post_content' => $type . '::' . $name,
+      'post_title'   => DataStudioCmd::generateUniqid(),
+      'post_status'  => 'publish',
+      'post_type'    => 'operation',
+    ));
+
+    update_field( 'operation_path_id', $path_id, $operation_id );
+
+    update_field( 'operation_name', $name, $operation_id );
+    update_field( 'operation_type', $type, $operation_id );
+
+    return $operation_id;
   }
 
   public static function createModel ( $logic_group_id, $name ) {

@@ -55,6 +55,18 @@ function data_studio_rewrite () {
   );
 
   add_rewrite_rule(
+    '^path/(.+)/$',
+    'index.php?post_type=path&p=$matches[1]',
+    'top'
+  );
+
+  add_rewrite_rule(
+    '^operation/(.+)/$',
+    'index.php?post_type=operation&p=$matches[1]',
+    'top'
+  );
+
+  add_rewrite_rule(
     '^model/(.+)/$',
     'index.php?post_type=model&p=$matches[1]',
     'top'
