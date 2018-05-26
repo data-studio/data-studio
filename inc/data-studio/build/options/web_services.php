@@ -15,10 +15,14 @@
  * PERFORMANCE OF THIS SOFTWARE.
  */
 
-require_once 'query.php';
-require_once 'cmd.php';
-require_once 'rewrites.php';
+add_filter(
+  DS_WEB_SERVICE_BUILD_OPTIONS,
+  'datastudio_build_web_service_as_openapi_opts',
+  10,
+  3
+);
 
-require_once 'ajax.php';
-
-require_once 'build/functions.php';
+function datastudio_build_web_service_as_openapi_opts ( $options ) {
+  $options['spec_openapi_v3'] = 'Spec: OpenAPI v3.0.1';
+  return $options;
+}

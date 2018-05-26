@@ -15,10 +15,24 @@
  * PERFORMANCE OF THIS SOFTWARE.
  */
 
-require_once 'query.php';
-require_once 'cmd.php';
-require_once 'rewrites.php';
+add_filter(
+  DS_APP_BUILD_OPTION_PREFERENCES,
+  'datastudio_build_app_as_php_prefs',
+  10,
+  3
+);
 
-require_once 'ajax.php';
+class DataStudioPhpBuildPreferences implements DataStudioBuildPreferences {
+  public function __construct () {
 
-require_once 'build/functions.php';
+  }
+  public function html () {
+    get_template_part( 'parts/forms/build-app' );
+  }
+}
+
+
+function datastudio_build_app_as_php_prefs ( $preferences ) {
+  $preferences['php_classes'] = new DataStudioPhpBuildPreferences();
+  return $preferences;
+}

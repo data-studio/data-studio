@@ -15,10 +15,23 @@
  * PERFORMANCE OF THIS SOFTWARE.
  */
 
-require_once 'query.php';
-require_once 'cmd.php';
-require_once 'rewrites.php';
+add_filter(
+  DS_WEB_SERVICE_BUILD_OPTION_PREFERENCES,
+  'datastudio_build_web_service_as_openapi_prefs',
+  10,
+  3
+);
 
-require_once 'ajax.php';
+class DataStudioOpenApiBuildPreferences implements DataStudioBuildPreferences {
+  public function __construct () {
 
-require_once 'build/functions.php';
+  }
+  public function html () {
+    get_template_part( 'parts/forms/build-web_service' );
+  }
+}
+
+function datastudio_build_web_service_as_openapi_prefs ( $preferences ) {
+  $preferences['spec_openapi_v3'] = new DataStudioOpenApiBuildPreferences();
+  return $preferences;
+}

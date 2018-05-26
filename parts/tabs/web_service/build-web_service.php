@@ -17,6 +17,12 @@
       </select>
     </div>
 
+    <?php $build_preferences = getBuildPreferences( 'web_service' ); ?>
+    <?php foreach ( $build_preferences as $opt => $prefs ) : ?>
+      <?php echo $opt; ?>
+      <?php $prefs->html(); ?>
+    <?php endforeach; ?>
+
     <button id="BuildWebService">
       Build Web Service
     </button>

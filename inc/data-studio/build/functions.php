@@ -15,10 +15,10 @@
  * PERFORMANCE OF THIS SOFTWARE.
  */
 
-require_once 'query.php';
-require_once 'cmd.php';
-require_once 'rewrites.php';
+require_once 'common.php';
 
-require_once 'ajax.php';
+require_once 'options/web_services.php';
+require_once 'preferences/web_services.php';
 
-require_once 'build/functions.php';
+require_once 'options/apps.php';
+require_once 'preferences/apps.php';
