@@ -56,7 +56,8 @@
       </header>
       <!-- /header -->
 
-      <div id="Sidebar">
+      <div id="Sidebar"
+        style="display: none;">
         <div class="overlay"></div>
         <div class="sidebar-container">
           <header style="height: 200px;">
