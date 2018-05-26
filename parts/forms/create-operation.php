@@ -13,14 +13,14 @@
   class="eviratec-web eviratec-form">
   <div class="form-field">
     <label for="OperationName">
-      URI
+      Name
     </label>
 
     <span class="spacer"></span>
 
     <input id="OperationName"
       name="OperationName"
-      placeholder="E.g. /object/{object_id}"
+      placeholder="E.g. createObject"
       value=""
       required>
   </div>
