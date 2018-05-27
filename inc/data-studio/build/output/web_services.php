@@ -44,11 +44,37 @@ add_filter(
 );
 
 function datastudio_build_web_service_as_spec_openapi_v3_output ( $output, $web_service_id ) {
-  return sprintf( 'webservice<%s> as an OAS spec', $web_service_id );
+  $output = array(
+    'paths' => [],
+    'definitions' => [],
+  );
+  $paths = DataStudioQuery::getPathsByWebService( $web_service_id );
+  if ( $paths->have_posts() ) {
+    while ( $paths->have_posts() ) {
+      $paths->the_post();
+      $path_id = get_the_ID();
+      $path_uri = get_field( 'path_uri', $path_id );
+      $output['paths'][$path_uri] = [];
+      $operations = DataStudioQuery::getOperationsByPath( $path_id );
+      if ( $operations->have_posts() ) {
+        while ( $operations->have_posts() ) {
+          $operations->the_post();
+          $operation_id = get_the_ID();
+          $operation_type = get_field( 'operation_type', $operation_id );
+          $operation_name = get_field( 'operation_name', $operation_id );
+          $output['paths'][$path_uri][] = [
+            'method' => $operation_type,
+            'operationId' => $operation_name,
+          ];
+        }
+      }
+    }
+  }
+  return json_encode( $output );
 }
 
 function datastudio_build_web_service_as_spec_openapi_v3_output_content_type ( $output, $web_service_id ) {
-  return 'text/plain';
+  return 'application/json';
 }
 
 function datastudio_build_web_service_as_plaintext_output ( $output, $web_service_id ) {

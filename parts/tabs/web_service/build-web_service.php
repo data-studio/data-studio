@@ -37,6 +37,8 @@
   </div>
 </form>
 
+<pre id="SourceCode"></pre>
+
 <script>
 (function ($) {"use strict";
   $.dsBuildPreferences({
@@ -52,8 +54,8 @@
     type: 'WebService',
     $formEl: $('form#BuildWebService'),
     onSuccess: function ( res ) {
-      console.log(res);
-      alert(res);
+      $( '#BuildWebServiceForm' ).hide();
+      $( 'pre#SourceCode' ).text( JSON.stringify( res, undefined, '  ' ) );
     },
   });
 })(jQuery);
