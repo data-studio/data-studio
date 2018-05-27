@@ -23,8 +23,22 @@ add_filter(
 );
 
 add_filter(
+  'datastudio_build_app_as_php_classes_output_content_type',
+  'datastudio_build_app_as_php_classes_output_content_type',
+  10,
+  3
+);
+
+add_filter(
   'datastudio_build_app_as_wordpress_output',
   'datastudio_build_app_as_wordpress_output',
+  10,
+  3
+);
+
+add_filter(
+  'datastudio_build_app_as_wordpress_output_content_type',
+  'datastudio_build_app_as_wordpress_output_content_type',
   10,
   3
 );
@@ -33,6 +47,14 @@ function datastudio_build_app_as_php_classes_output ( $output, $app_id ) {
   return sprintf( 'app<%s> as php', $app_id );
 }
 
+function datastudio_build_app_as_php_classes_output_content_type ( $output, $app_id ) {
+  return 'text/plain';
+}
+
 function datastudio_build_app_as_wordpress_output ( $output, $app_id ) {
   return sprintf( 'app<%s> as wordpress', $app_id );
+}
+
+function datastudio_build_app_as_wordpress_output_content_type ( $output, $app_id ) {
+  return 'text/plain';
 }

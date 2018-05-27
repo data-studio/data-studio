@@ -23,8 +23,22 @@ add_filter(
 );
 
 add_filter(
+  'datastudio_build_web_service_as_spec_openapi_v3_output_content_type',
+  'datastudio_build_web_service_as_spec_openapi_v3_output_content_type',
+  10,
+  3
+);
+
+add_filter(
   'datastudio_build_web_service_as_plaintext_output',
   'datastudio_build_web_service_as_plaintext_output',
+  10,
+  3
+);
+
+add_filter(
+  'datastudio_build_web_service_as_plaintext_output_content_type',
+  'datastudio_build_web_service_as_plaintext_output_content_type',
   10,
   3
 );
@@ -33,6 +47,14 @@ function datastudio_build_web_service_as_spec_openapi_v3_output ( $output, $web_
   return sprintf( 'webservice<%s> as an OAS spec', $web_service_id );
 }
 
+function datastudio_build_web_service_as_spec_openapi_v3_output_content_type ( $output, $web_service_id ) {
+  return 'text/plain';
+}
+
 function datastudio_build_web_service_as_plaintext_output ( $output, $web_service_id ) {
   return sprintf( 'webservice<%s> as plaintext', $web_service_id );
+}
+
+function datastudio_build_web_service_as_plaintext_output_content_type ( $output, $web_service_id ) {
+  return 'text/plain';
 }
