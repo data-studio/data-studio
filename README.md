@@ -2,6 +2,28 @@
 
 WP export in: `./doc/db/datastudiobyeviratec...xml`
 
+## Special notes, further reading, and thanks to ...
+
+Please note **this project is in NO WAY affiliated with; or supported, or endorsed by; any of the following people or organisations.**
+
+They have special mention here as I feel they deserve it :)
+
+### CQRS
+
+Command Query Responsibility Segregation
+
+- [Martin Fowler](https://martinfowler.com) for this guide on [CQRS](https://martinfowler.com/bliki/CQRS.html)
+- [Greg Young](https://twitter.com/gregyoung) as he is mentioned on https://martinfowler.com/bliki/CQRS.html
+- [Douglas Reith](https://www.linkedin.com/in/douglas-reith/) for introducing me to CQRS and explaining it in a way I could understand
+
+### OpenAPI
+
+- [OpenAPI Initiative](https://github.com/OAI): https://openapis.org and it's contributors.
+
+### Missing someone/something?
+
+Let me know :)
+
 ## Models
 
 ```
