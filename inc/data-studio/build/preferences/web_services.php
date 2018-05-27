@@ -22,16 +22,37 @@ add_filter(
   3
 );
 
+add_filter(
+  DS_WEB_SERVICE_BUILD_OPTION_PREFERENCES,
+  'datastudio_build_web_service_as_plaintext_prefs',
+  10,
+  3
+);
+
 class DataStudioOpenApiBuildPreferences implements DataStudioBuildPreferences {
   public function __construct () {
 
   }
   public function html () {
-    get_template_part( 'parts/forms/build-web_service' );
+    get_template_part( 'parts/forms/build-web_service-as-oai' );
+  }
+}
+
+class DataStudioWebServicePlainTextBuildPreferences implements DataStudioBuildPreferences {
+  public function __construct () {
+
+  }
+  public function html () {
+    // no preferences
   }
 }
 
 function datastudio_build_web_service_as_openapi_prefs ( $preferences ) {
   $preferences['spec_openapi_v3'] = new DataStudioOpenApiBuildPreferences();
+  return $preferences;
+}
+
+function datastudio_build_web_service_as_plaintext_prefs ( $preferences ) {
+  $preferences['plaintext'] = new DataStudioWebServicePlainTextBuildPreferences();
   return $preferences;
 }

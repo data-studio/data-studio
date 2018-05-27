@@ -22,7 +22,19 @@ add_filter(
   3
 );
 
+add_filter(
+  DS_APP_BUILD_OPTIONS,
+  'datastudio_build_app_as_wordpress_opts',
+  10,
+  3
+);
+
 function datastudio_build_app_as_php_opts ( $options ) {
   $options['php_classes'] = 'PHP Classes';
+  return $options;
+}
+
+function datastudio_build_app_as_wordpress_opts ( $options ) {
+  $options['wordpress'] = 'WordPress Theme';
   return $options;
 }

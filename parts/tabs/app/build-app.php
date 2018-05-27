@@ -9,7 +9,7 @@
 
       <span class="spacer"></span>
 
-      <select name="BuildAppAs">
+      <select id="BuildAs" name="BuildAppAs">
         <?php $options = getBuildOptions( 'app' ); ?>
         <?php foreach ( $options as $opt => $label ) : ?>
           <option value="<?php echo $opt; ?>"><?php echo $label; ?></option>
@@ -19,8 +19,10 @@
 
     <?php $build_preferences = getBuildPreferences( 'app' ); ?>
     <?php foreach ( $build_preferences as $opt => $prefs ) : ?>
-      <?php echo $opt; ?>
-      <?php $prefs->html(); ?>
+      <div class="build-preferences"
+        x-build-type="<?php echo $opt; ?>">
+        <?php $prefs->html(); ?>
+      </div>
     <?php endforeach; ?>
 
     <button id="BuildApp">
@@ -31,3 +33,12 @@
       value="build-app">
   </div>
 </form>
+
+<script>
+(function ($) {"use strict";
+  $.dsBuildPreferences({
+    $selectEl: $('select#BuildAs'),
+    $prefsEls: $('div.build-preferences'),
+  });
+})(jQuery);
+</script>

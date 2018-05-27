@@ -20,6 +20,55 @@
   var _ajax_url = data_studio_ajax_object.ajax_url;
 
   /**
+   * Build Preferences Selection
+   */
+  (function ($) {"use strict";
+    $.dsBuildPreferences = function ( _d ) {
+      _d = _d || {};
+      var preferencesVisible = null;
+      var $selectEl = _d.$selectEl;
+      var $prefsEls = _d.$prefsEls;
+      var buildPrefs = {};
+      for (var i = 0; i < $prefsEls.length; i++) {
+        initPrefsEl($($prefsEls[i]));
+      }
+      $selectEl.change(function ($ev) {
+        readSelectEl();
+      });
+      $(document).load(function () {
+        readSelectEl();
+      });
+      function initPrefsEl ($el) {
+        var buildType = $el.attr('x-build-type');
+        buildPrefs[buildType] = {
+          name: buildType,
+          $el: $el,
+        };
+      }
+      function togglePreferences () {
+        if (true === preferencesVisible) {
+          hidePreferences();
+          return;
+        }
+        showPreferences();
+      }
+      function showPreferences (prefs) {
+        prefs.$el.show();
+        preferencesVisible = prefs.name;
+      }
+      function hideAllPreferences () {
+        $prefsEls.hide();
+        preferencesVisible = null;
+      }
+      function readSelectEl () {
+        var value = $selectEl.val();
+        hideAllPreferences();
+        showPreferences(buildPrefs[value]);
+      }
+    };
+  })(jQuery);
+
+  /**
    * Form Toggle
    */
   (function ($) {"use strict";

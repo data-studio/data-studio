@@ -22,7 +22,19 @@ add_filter(
   3
 );
 
+add_filter(
+  DS_WEB_SERVICE_BUILD_OPTIONS,
+  'datastudio_build_web_service_as_plaintext_opts',
+  10,
+  3
+);
+
 function datastudio_build_web_service_as_openapi_opts ( $options ) {
-  $options['spec_openapi_v3'] = 'Spec: OpenAPI v3.0.1';
+  $options['spec_openapi_v3'] = 'OAS: OpenAPI v3.0.1 spec';
+  return $options;
+}
+
+function datastudio_build_web_service_as_plaintext_opts ( $options ) {
+  $options['plaintext'] = 'Plain-text';
   return $options;
 }
