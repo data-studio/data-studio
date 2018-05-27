@@ -100,12 +100,11 @@
         });
 
         req.success(function (res) {
-          console.log(arguments);
           onSuccess(res);
         });
 
         req.error(function () {
-          console.log(arguments);
+
         });
 
         req.always(function () {
@@ -178,12 +177,11 @@
         });
 
         req.success(function (res) {
-          console.log(arguments);
           onSuccess(res);
         });
 
         req.error(function () {
-          console.log(arguments);
+
         });
 
         req.always(function () {
@@ -268,7 +266,6 @@
         var req = $.get(getUrl);
 
         req.success(function (res) {
-          console.log(arguments);
           var $newEls = $(res);
           if (0 === $newEls.length || '' === res.trim()) {
             isFinished();
@@ -278,7 +275,7 @@
         });
 
         req.error(function () {
-          console.log(arguments);
+
         });
 
         req.always(function () {
