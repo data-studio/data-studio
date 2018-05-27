@@ -18,7 +18,9 @@
 require_once 'common.php';
 
 require_once 'options/web_services.php';
+require_once 'output/web_services.php';
 require_once 'preferences/web_services.php';
 
 require_once 'options/apps.php';
+require_once 'output/apps.php';
 require_once 'preferences/apps.php';

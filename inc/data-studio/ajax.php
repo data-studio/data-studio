@@ -46,6 +46,16 @@ function data_studio_ajax () {
         wp_die();
         break;
 
+      case 'buildApp':
+        echo getBuildOutput(
+          'app',
+          $_REQUEST['args']['BuildAppAs'],
+          $_REQUEST['args']['AppID']
+        );
+        // echo 'build App<' . $_REQUEST['args']['AppID'] . '> as ' . $_REQUEST['args']['BuildAppAs'];
+        wp_die();
+        break;
+
       case 'createLogicGroup':
         $response = DataStudioCmd::createLogicGroup(
            $_REQUEST['args']['LogicGroupAppID'],
@@ -59,6 +69,16 @@ function data_studio_ajax () {
            $_REQUEST['args']['WebServiceAppID'],
            $_REQUEST['args']['WebServiceName']
         );
+        wp_die();
+        break;
+
+      case 'buildWebService':
+        echo getBuildOutput(
+          'web_service',
+          $_REQUEST['args']['BuildWebServiceAs'],
+          $_REQUEST['args']['WebServiceID']
+        );
+        // echo 'build WebService<' . $_REQUEST['args']['WebServiceID'] . '> as ' . $_REQUEST['args']['BuildWebServiceAs'];
         wp_die();
         break;
 

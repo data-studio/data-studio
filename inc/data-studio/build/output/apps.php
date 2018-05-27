@@ -15,34 +15,24 @@
  * PERFORMANCE OF THIS SOFTWARE.
  */
 
-add_action("init", "eviratec_web_enqueue_scripts");
+add_filter(
+  'datastudio_build_app_as_php_classes_output',
+  'datastudio_build_app_as_php_classes_output',
+  10,
+  3
+);
 
-function eviratec_web_enqueue_admin_scripts () {
-  if (is_admin()) {
-    eviratec_web_enqueue_admin_authed_scripts();
-  }
+add_filter(
+  'datastudio_build_app_as_wordpress_output',
+  'datastudio_build_app_as_wordpress_output',
+  10,
+  3
+);
+
+function datastudio_build_app_as_php_classes_output ( $output, $app_id ) {
+  return sprintf( 'app<%s> as php', $app_id );
 }
 
-function eviratec_web_enqueue_admin_authed_scripts () {
-
-}
-
-function eviratec_web_enqueue_scripts () {
-  if (is_admin()) {
-    return eviratec_web_enqueue_admin_scripts();
-  }
-  wp_enqueue_script(
-    "main-js",
-    get_stylesheet_directory_uri() . "/main.js",
-    array( "jquery" ),
-    "1.0.10",
-    false
-  );
-  wp_localize_script(
-    'main-js',
-    'data_studio_ajax_object',
-    array(
-      'ajax_url' => admin_url( 'admin-ajax.php' )
-    )
-  );
+function datastudio_build_app_as_wordpress_output ( $output, $app_id ) {
+  return sprintf( 'app<%s> as wordpress', $app_id );
 }

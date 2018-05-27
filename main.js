@@ -69,6 +69,53 @@
   })(jQuery);
 
   /**
+   * Build AJAX
+   */
+  (function ($) {"use strict";
+    $.dsBuildForm = function ( _d ) {
+      _d = _d || {};
+      var type = _d.type;
+      var $formEl = _d.$formEl || $("<form></form>");
+      var onSuccess = _d.onSuccess || function () { };
+
+      $formEl.submit(function ($event) {
+        $event.preventDefault();
+        submitForm();
+      });
+
+      function submitForm () {
+        var postUrl = _ajax_url;
+
+        var args = {};
+        var dArray = $formEl.serializeArray();
+
+        for (var i = 0; i < dArray.length; i++) {
+          args[dArray[i].name] = dArray[i].value;
+        }
+
+        var req = $.post(_ajax_url, {
+          action: 'data_studio',
+          type: 'build' + type,
+          args: args,
+        });
+
+        req.success(function (res) {
+          console.log(arguments);
+          onSuccess(res);
+        });
+
+        req.error(function () {
+          console.log(arguments);
+        });
+
+        req.always(function () {
+
+        });
+      }
+    };
+  })(jQuery);
+
+  /**
    * Form Toggle
    */
   (function ($) {"use strict";

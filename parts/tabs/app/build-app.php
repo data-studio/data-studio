@@ -1,4 +1,4 @@
-<form>
+<form id="BuildApp">
   <h2>Build App</h2>
   <div id="BuildAppForm"
     class="eviratec-web eviratec-form">
@@ -28,6 +28,9 @@
     <button id="BuildApp">
       Build App
     </button>
+    <input name="AppID"
+      type="hidden"
+      value="<?php the_ID(); ?>">
     <input name="form-id"
       type="hidden"
       value="build-app">
@@ -39,6 +42,19 @@
   $.dsBuildPreferences({
     $selectEl: $('select#BuildAs'),
     $prefsEls: $('div.build-preferences'),
+  });
+})(jQuery);
+</script>
+
+<script>
+(function ($) {"use strict";
+  $.dsBuildForm({
+    type: 'App',
+    $formEl: $('form#BuildApp'),
+    onSuccess: function (res) {
+      console.log(res);
+      alert(res);
+    },
   });
 })(jQuery);
 </script>

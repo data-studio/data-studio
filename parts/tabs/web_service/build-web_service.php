@@ -1,4 +1,4 @@
-<form>
+<form id="BuildWebService">
   <h2>Build Web Service</h2>
   <div id="BuildWebServiceForm"
     class="eviratec-web eviratec-form">
@@ -28,6 +28,9 @@
     <button id="BuildWebService">
       Build Web Service
     </button>
+    <input name="WebServiceID"
+      type="hidden"
+      value="<?php the_ID(); ?>">
     <input name="form-id"
       type="hidden"
       value="build-web_service">
@@ -39,6 +42,19 @@
   $.dsBuildPreferences({
     $selectEl: $('select#BuildAs'),
     $prefsEls: $('div.build-preferences'),
+  });
+})(jQuery);
+</script>
+
+<script>
+(function ($) {"use strict";
+  $.dsBuildForm({
+    type: 'WebService',
+    $formEl: $('form#BuildWebService'),
+    onSuccess: function ( res ) {
+      console.log(res);
+      alert(res);
+    },
   });
 })(jQuery);
 </script>

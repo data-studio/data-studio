@@ -25,6 +25,15 @@ define(
 );
 
 define(
+  'DS_APP_BUILD_OUTPUT',
+  'datastudio_app_build_output'
+);
+define(
+  'DS_WEB_SERVICE_BUILD_OUTPUT',
+  'datastudio_web_service_build_output'
+);
+
+define(
   'DS_APP_BUILD_OPTION_PREFERENCES',
   'datastudio_app_build_preferences'
 );
@@ -44,6 +53,19 @@ function getBuildOptions ( $type = 'app' ) {
     $options
   );
   return $options;
+}
+
+function getBuildOutput ( $type, $as, $post_id ) {
+  if ( ! $type ) {
+    return '';
+  }
+  $output = '';
+  $output = apply_filters(
+    sprintf( 'datastudio_build_%s_as_%s_output', $type, $as ),
+    $output,
+    $post_id
+  );
+  return $output;
 }
 
 function getBuildPreferences ( $type = 'app' ) {
