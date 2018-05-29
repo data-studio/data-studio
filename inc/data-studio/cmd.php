@@ -26,6 +26,7 @@ class DataStudioCmd {
 
   public static function createApp ( $name ) {
     $app_id = null;
+    $name = sanitize_text_field( $name );
 
     $app_id = wp_insert_post(array(
       'post_author'  => wp_get_current_user()->ID,
@@ -44,6 +45,8 @@ class DataStudioCmd {
 
   public static function createLogicGroup ( $app_id, $name ) {
     $logic_group_id = null;
+    $app_id = sanitize_text_field( $app_id );
+    $name = sanitize_text_field( $name );
 
     $logic_group_id = wp_insert_post(array(
       'post_author'  => wp_get_current_user()->ID,
@@ -66,6 +69,8 @@ class DataStudioCmd {
 
   public static function createWebService ( $app_id, $name ) {
     $web_service_id = null;
+    $app_id = sanitize_text_field( $app_id );
+    $name = sanitize_text_field( $name );
 
     $web_service_id = wp_insert_post(array(
       'post_author'  => wp_get_current_user()->ID,
@@ -86,6 +91,8 @@ class DataStudioCmd {
 
   public static function createPath ( $web_service_id, $uri ) {
     $path_id = null;
+    $web_service_id = sanitize_text_field( $web_service_id );
+    $uri = sanitize_text_field( $uri );
 
     $path_id = wp_insert_post(array(
       'post_author'  => wp_get_current_user()->ID,
@@ -106,6 +113,9 @@ class DataStudioCmd {
 
   public static function createOperation ( $path_id, $name, $type ) {
     $operation_id = null;
+    $path_id = sanitize_text_field( $path_id );
+    $name = sanitize_text_field( $name );
+    $type = sanitize_text_field( $type );
 
     $operation_id = wp_insert_post(array(
       'post_author'  => wp_get_current_user()->ID,
@@ -125,6 +135,8 @@ class DataStudioCmd {
 
   public static function createModel ( $logic_group_id, $name ) {
     $model_id = null;
+    $logic_group_id = sanitize_text_field( $logic_group_id );
+    $name = sanitize_text_field( $name );
 
     $model_id = wp_insert_post(array(
       'post_author'  => wp_get_current_user()->ID,
@@ -145,6 +157,8 @@ class DataStudioCmd {
 
   public static function createAttribute ( $model_id, $name ) {
     $attribute_id = null;
+    $model_id = sanitize_text_field( $model_id );
+    $name = sanitize_text_field( $name );
 
     $attribute_id = wp_insert_post(array(
       'post_author'  => wp_get_current_user()->ID,
@@ -163,6 +177,8 @@ class DataStudioCmd {
 
   public static function createCommand ( $logic_group_id, $name ) {
     $command_id = null;
+    $logic_group_id = sanitize_text_field( $logic_group_id );
+    $name = sanitize_text_field( $name );
 
     $command_id = wp_insert_post(array(
       'post_author'  => wp_get_current_user()->ID,
@@ -181,6 +197,8 @@ class DataStudioCmd {
 
   public static function createQuery ( $logic_group_id, $name ) {
     $query_id = null;
+    $logic_group_id = sanitize_text_field( $logic_group_id );
+    $name = sanitize_text_field( $name );
 
     $query_id = wp_insert_post(array(
       'post_author'  => wp_get_current_user()->ID,
@@ -198,6 +216,8 @@ class DataStudioCmd {
   }
 
   public static function setAppName ( $app_id, $new_value ) {
+    $app_id = sanitize_text_field( $app_id );
+    $new_value = sanitize_text_field( $new_value );
     if ( wp_get_current_user()->ID !== get_the_author_meta( 'ID', $app_id ) ) {
       return;
     }
@@ -205,6 +225,8 @@ class DataStudioCmd {
   }
 
   public static function setLogicGroupName ( $logic_group_id, $new_value ) {
+    $logic_group_id = sanitize_text_field( $logic_group_id );
+    $new_value = sanitize_text_field( $new_value );
     if ( wp_get_current_user()->ID !== get_the_author_meta( 'ID', $logic_group_id ) ) {
       return;
     }
@@ -212,6 +234,8 @@ class DataStudioCmd {
   }
 
   public static function setModelName ( $model_id, $new_value ) {
+    $model_id = sanitize_text_field( $model_id );
+    $new_value = sanitize_text_field( $new_value );
     if ( wp_get_current_user()->ID !== get_the_author_meta( 'ID', $model_id ) ) {
       return;
     }
@@ -219,6 +243,8 @@ class DataStudioCmd {
   }
 
   public static function setAttributeName ( $attribute_id, $new_value ) {
+    $attribute_id = sanitize_text_field( $attribute_id );
+    $new_value = sanitize_text_field( $new_value );
     if ( wp_get_current_user()->ID !== get_the_author_meta( 'ID', $attribute_id ) ) {
       return;
     }
@@ -226,6 +252,8 @@ class DataStudioCmd {
   }
 
   public static function setCommandName ( $command_id, $new_value ) {
+    $command_id = sanitize_text_field( $command_id );
+    $new_value = sanitize_text_field( $new_value );
     if ( wp_get_current_user()->ID !== get_the_author_meta( 'ID', $command_id ) ) {
       return;
     }
@@ -233,6 +261,8 @@ class DataStudioCmd {
   }
 
   public static function setQueryName ( $query_id, $new_value ) {
+    $query_id = sanitize_text_field( $query_id );
+    $new_value = sanitize_text_field( $new_value );
     if ( wp_get_current_user()->ID !== get_the_author_meta( 'ID', $query_id ) ) {
       return;
     }
@@ -240,6 +270,7 @@ class DataStudioCmd {
   }
 
   public static function deleteApp ( $app_id ) {
+    $app_id = sanitize_text_field( $app_id );
     if ( wp_get_current_user()->ID !== get_the_author_meta( 'ID', $app_id ) ) {
       return;
     }
@@ -247,6 +278,7 @@ class DataStudioCmd {
   }
 
   public static function deleteLogicGroup ( $logic_group_id ) {
+    $logic_group_id = sanitize_text_field( $logic_group_id );
     if ( wp_get_current_user()->ID !== get_the_author_meta( 'ID', $logic_group_id ) ) {
       return;
     }
@@ -254,6 +286,7 @@ class DataStudioCmd {
   }
 
   public static function deleteModel ( $model_id ) {
+    $model_id = sanitize_text_field( $model_id );
     if ( wp_get_current_user()->ID !== get_the_author_meta( 'ID', $model_id ) ) {
       return;
     }
@@ -261,6 +294,7 @@ class DataStudioCmd {
   }
 
   public static function deleteAttribute ( $attribute_id ) {
+    $attribute_id = sanitize_text_field( $attribute_id );
     if ( wp_get_current_user()->ID !== get_the_author_meta( 'ID', $attribute_id ) ) {
       return;
     }
@@ -268,6 +302,7 @@ class DataStudioCmd {
   }
 
   public static function deleteCommand ( $command_id ) {
+    $command_id = sanitize_text_field( $command_id );
     if ( wp_get_current_user()->ID !== get_the_author_meta( 'ID', $command_id ) ) {
       return;
     }
@@ -275,6 +310,7 @@ class DataStudioCmd {
   }
 
   public static function deleteQuery ( $query_id ) {
+    $query_id = sanitize_text_field( $query_id );
     if ( wp_get_current_user()->ID !== get_the_author_meta( 'ID', $query_id ) ) {
       return;
     }
