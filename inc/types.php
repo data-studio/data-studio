@@ -20,15 +20,19 @@ class DataStudioPostTypes {
     add_action( 'init', array( $this, 'registerPostTypes'));
   }
   public function registerPostTypes () {
+
     $this->registerAppPostType();
+
     $this->registerLogicGroupPostType();
-    $this->registerWebServicePostType();
-    $this->registerPathPostType();
-    $this->registerOperationPostType();
     $this->registerModelPostType();
     $this->registerAttributePostType();
     $this->registerCommandPostType();
     $this->registerQueryPostType();
+
+    $this->registerWebServicePostType();
+    $this->registerPathPostType();
+    $this->registerOperationPostType();
+
   }
   private function registerAppPostType () {
     $this->registerPostType(array(
@@ -164,28 +168,28 @@ class DataStudioPostTypes {
   private function registerPostType ($d) {
 
     $labels = array(
-      'name'               => _x( $d['label_multi'], 'post type general name', 'eviratec' ),
-      'singular_name'      => _x( $d['label_single'], 'post type singular name', 'eviratec' ),
-      'menu_name'          => _x( $d['label_multi'], 'admin menu', 'eviratec' ),
-      'name_admin_bar'     => _x( $d['label_single'], 'add new on admin bar', 'eviratec' ),
-      'add_new'            => _x( 'Add New', $d['name'], 'eviratec' ),
-      'add_new_item'       => __( sprintf('Add New %s', $d['label_single']), 'eviratec' ),
-      'new_item'           => __( sprintf('New %s', $d['label_single']), 'eviratec' ),
-      'edit_item'          => __( sprintf('Edit %s', $d['label_single']), 'eviratec' ),
-      'view_item'          => __( sprintf('View %s', $d['label_single']), 'eviratec' ),
-      'all_items'          => __( sprintf('All %s', $d['label_multi']), 'eviratec' ),
-      'search_items'       => __( sprintf('Search %s', $d['label_multi']), 'eviratec' ),
-      'parent_item_colon'  => __( sprintf('Parent %s:', $d['label_multi']), 'eviratec' ),
-      'not_found'          => __( sprintf('No %s found.', $d['label_multi_lc']), 'eviratec' ),
-      'not_found_in_trash' => __( sprintf('No %s found in Trash.', $d['label_multi_lc']), 'eviratec' )
+      'name'               => _x( $d['label_multi'], 'post type general name', 'data-studio' ),
+      'singular_name'      => _x( $d['label_single'], 'post type singular name', 'data-studio' ),
+      'menu_name'          => _x( $d['label_multi'], 'admin menu', 'data-studio' ),
+      'name_admin_bar'     => _x( $d['label_single'], 'add new on admin bar', 'data-studio' ),
+      'add_new'            => _x( 'Add New', $d['name'], 'data-studio' ),
+      'add_new_item'       => __( sprintf('Add New %s', $d['label_single']), 'data-studio' ),
+      'new_item'           => __( sprintf('New %s', $d['label_single']), 'data-studio' ),
+      'edit_item'          => __( sprintf('Edit %s', $d['label_single']), 'data-studio' ),
+      'view_item'          => __( sprintf('View %s', $d['label_single']), 'data-studio' ),
+      'all_items'          => __( sprintf('All %s', $d['label_multi']), 'data-studio' ),
+      'search_items'       => __( sprintf('Search %s', $d['label_multi']), 'data-studio' ),
+      'parent_item_colon'  => __( sprintf('Parent %s:', $d['label_multi']), 'data-studio' ),
+      'not_found'          => __( sprintf('No %s found.', $d['label_multi_lc']), 'data-studio' ),
+      'not_found_in_trash' => __( sprintf('No %s found in Trash.', $d['label_multi_lc']), 'data-studio' )
     );
     $args = array(
       'labels'             => $labels,
-      'description'        => __( 'Description.', 'eviratec' ),
+      'description'        => __( 'Description.', 'data-studio' ),
       'public'             => true,
       'publicly_queryable' => true,
       'show_ui'            => true,
-      // 'show_in_menu'    => 'eviratec',
+      // 'show_in_menu'    => 'data-studio',
       'show_in_nav_menus'  => false,
       'show_in_admin_bar'  => false,
       'query_var'          => true,
