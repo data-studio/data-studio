@@ -341,13 +341,13 @@ function html5blankcomments($comment, $args, $depth)
   <?php printf(__('<cite class="fn">%s</cite> <span class="says">says:</span>'), get_comment_author_link()) ?>
   </div>
 <?php if ($comment->comment_approved == '0') : ?>
-  <em class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.') ?></em>
+  <em class="comment-awaiting-moderation"><?php _e('Your comment is awaiting moderation.', 'data-studio') ?></em>
   <br />
 <?php endif; ?>
 
   <div class="comment-meta commentmetadata"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>">
     <?php
-      printf( __('%1$s at %2$s'), get_comment_date(),  get_comment_time()) ?></a><?php edit_comment_link(__('(Edit)'),'  ','' );
+      printf( __('%1$s at %2$s'), get_comment_date(),  get_comment_time()) ?></a><?php edit_comment_link(__('(Edit)', 'data-studio'),'  ','' );
     ?>
   </div>
 
