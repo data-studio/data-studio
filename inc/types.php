@@ -135,8 +135,8 @@ class DataStudioPostTypes {
   }
   private function registerTaxa ($postType, $d) {
     $labels = array(
-      'name'                       => _x( sprintf('%s', $d['label_multi']), 'taxonomy general name', 'data-studio' ),
-      'singular_name'              => _x( sprintf('%s', $d['label_single']), 'taxonomy singular name', 'data-studio' ),
+      'name'                       => _x( sprintf('%s', $d['label_multi']), 'taxonomy general name' ),
+      'singular_name'              => _x( sprintf('%s', $d['label_single']), 'taxonomy singular name' ),
       'search_items'               => __( sprintf('Search %s Name', $d['label_multi']), 'data-studio' ),
       'popular_items'              => __( sprintf('Popular %s Name', $d['label_multi']), 'data-studio' ),
       'all_items'                  => __( sprintf('All %s Name', $d['label_multi']), 'data-studio' ),
@@ -168,11 +168,11 @@ class DataStudioPostTypes {
   private function registerPostType ($d) {
 
     $labels = array(
-      'name'               => _x( $d['label_multi'], 'post type general name', 'data-studio' ),
-      'singular_name'      => _x( $d['label_single'], 'post type singular name', 'data-studio' ),
-      'menu_name'          => _x( $d['label_multi'], 'admin menu', 'data-studio' ),
-      'name_admin_bar'     => _x( $d['label_single'], 'add new on admin bar', 'data-studio' ),
-      'add_new'            => _x( 'Add New', $d['name'], 'data-studio' ),
+      'name'               => _x( $d['label_multi'], 'post type general name' ),
+      'singular_name'      => _x( $d['label_single'], 'post type singular name' ),
+      'menu_name'          => _x( $d['label_multi'], 'admin menu' ),
+      'name_admin_bar'     => _x( $d['label_single'], 'add new on admin bar' ),
+      'add_new'            => _x( 'Add New', $d['name'] ),
       'add_new_item'       => __( sprintf('Add New %s', $d['label_single']), 'data-studio' ),
       'new_item'           => __( sprintf('New %s', $d['label_single']), 'data-studio' ),
       'edit_item'          => __( sprintf('Edit %s', $d['label_single']), 'data-studio' ),

@@ -23,10 +23,7 @@
  */
 
 function eviratec_web_disable_feed () {
-  wp_die( __(
-    'No feed available, please visit our <a href="' . esc_url( home_url() )
-      . '">homepage</a>!'
-  ) );
+  wp_die( __( 'No feed available', 'data-studio' ) );
 }
 
 add_action('do_feed',                 'eviratec_web_disable_feed', 1);
