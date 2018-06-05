@@ -25,7 +25,7 @@ if (!isset($content_width))
 if (function_exists('add_theme_support'))
 {
   // Title tag
-  add_theme_support( "title-tag" )
+  add_theme_support( "title-tag" );
 
   // Add Thumbnail Theme Support
   add_theme_support('post-thumbnails');
