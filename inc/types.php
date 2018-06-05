@@ -135,22 +135,22 @@ class DataStudioPostTypes {
   }
   private function registerTaxa ($postType, $d) {
     $labels = array(
-      'name'                       => _x( sprintf('%s', $d['label_multi']), 'taxonomy general name', 'textdomain' ),
-      'singular_name'              => _x( sprintf('%s', $d['label_single']), 'taxonomy singular name', 'textdomain' ),
-      'search_items'               => __( sprintf('Search %s Name', $d['label_multi']), 'textdomain' ),
-      'popular_items'              => __( sprintf('Popular %s Name', $d['label_multi']), 'textdomain' ),
-      'all_items'                  => __( sprintf('All %s Name', $d['label_multi']), 'textdomain' ),
+      'name'                       => _x( sprintf('%s', $d['label_multi']), 'taxonomy general name', 'data-studio' ),
+      'singular_name'              => _x( sprintf('%s', $d['label_single']), 'taxonomy singular name', 'data-studio' ),
+      'search_items'               => __( sprintf('Search %s Name', $d['label_multi']), 'data-studio' ),
+      'popular_items'              => __( sprintf('Popular %s Name', $d['label_multi']), 'data-studio' ),
+      'all_items'                  => __( sprintf('All %s Name', $d['label_multi']), 'data-studio' ),
       'parent_item'                => null,
       'parent_item_colon'          => null,
-      'edit_item'                  => __( sprintf('Edit %s', $d['label_single']), 'textdomain' ),
-      'update_item'                => __( sprintf('Update %s', $d['label_single']), 'textdomain' ),
-      'add_new_item'               => __( sprintf('Add New %s', $d['label_single']), 'textdomain' ),
-      'new_item_name'              => __( sprintf('New %s Name', $d['label_single']), 'textdomain' ),
-      'separate_items_with_commas' => __( sprintf('Separate %s with commas', $d['label_multi_lc']), 'textdomain' ),
-      'add_or_remove_items'        => __( sprintf('Add or remove %s', $d['label_multi_lc']), 'textdomain' ),
-      'choose_from_most_used'      => __( sprintf('Choose from the most used %s', $d['label_multi_lc']), 'textdomain' ),
-      'not_found'                  => __( sprintf('No %s found.', $d['label_multi_lc']), 'textdomain' ),
-      'menu_name'                  => __( sprintf('%s', $d['label_multi']), 'textdomain' ),
+      'edit_item'                  => __( sprintf('Edit %s', $d['label_single']), 'data-studio' ),
+      'update_item'                => __( sprintf('Update %s', $d['label_single']), 'data-studio' ),
+      'add_new_item'               => __( sprintf('Add New %s', $d['label_single']), 'data-studio' ),
+      'new_item_name'              => __( sprintf('New %s Name', $d['label_single']), 'data-studio' ),
+      'separate_items_with_commas' => __( sprintf('Separate %s with commas', $d['label_multi_lc']), 'data-studio' ),
+      'add_or_remove_items'        => __( sprintf('Add or remove %s', $d['label_multi_lc']), 'data-studio' ),
+      'choose_from_most_used'      => __( sprintf('Choose from the most used %s', $d['label_multi_lc']), 'data-studio' ),
+      'not_found'                  => __( sprintf('No %s found.', $d['label_multi_lc']), 'data-studio' ),
+      'menu_name'                  => __( sprintf('%s', $d['label_multi']), 'data-studio' ),
     );
 
     $args = array(
