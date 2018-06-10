@@ -208,11 +208,11 @@ a img.aligncenter {
 
 /* wrapper */
 .wrapper {
-  max-width:1280px;
+  max-width: none;
   width: 100%;
   margin: 48px auto 0;
-  position:relative;
-  padding: 0 0 16px;
+  position: relative;
+  padding: 0;
 }
 /* header */
 .header {
@@ -224,9 +224,73 @@ a img.aligncenter {
   top: 0;
   left: 0;
   right: 0;
+}
+.header .toolbar {
   display: flex;
   flex-direction: row;
- }
+}
+.header .toolbar a.logout {
+  color: rgba(255,255,255,1);
+  line-height: 48px;
+  padding: 0 16px;
+  font-size: 1.2em;
+}
+/* hero */
+#WelcomeHero {
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+  color: rgba(255,255,255,1);
+  background-color: #192124;
+}
+#WelcomeHero div.hero-content {
+  display: flex;
+  flex-direction: row;
+}
+#WelcomeHero div.hero-text p {
+  font-size: 1.8em;
+  margin-bottom: 0;
+}
+#WelcomeHero div.hero-content div.hero-text,
+#WelcomeHero div.hero-content div.hero-actions {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 0 16px;
+}
+#WelcomeHero div.hero-content div.hero-text {
+  width: 65%;
+}
+#WelcomeHero div.hero-content div.hero-text h1 {
+  font-size: 3em;
+}
+#WelcomeHero div.hero-content div.hero-actions {
+  width: 35%;
+}
+#WelcomeHero div.hero-content div.hero-actions h2 {
+  margin: 0.5em 0 1em;
+}
+#WelcomeHero div.hero-content div.hero-actions a.call-to-action {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 40px;
+  line-height: 40px;
+  max-height: 40px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0px 1px 2px rgba(0,0,0,0.12);
+  margin: 0.5em 0;
+  font-weight: 400;
+}
+#WelcomeHero div.hero-content div.hero-actions a.call-to-action.primary-action {
+  background-color: #FF9100;
+  color: rgba(0,0,0,0.87);
+}
+#WelcomeHero div.hero-content div.hero-actions a.call-to-action span.icon {
+  margin-right: 8px;
+}
 /* logo */
 .logo {
   color: rgba(255,255,255,1);
@@ -251,7 +315,7 @@ button#ToggleSidebar_Button {
   height: 48px;
   width: 48px;
   background: transparent;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.7);
   border: none;
 }
 /* nav */
@@ -313,6 +377,8 @@ button#ToggleSidebar_Button {
   padding: 0 16px 16px;
   border-top: 1px solid rgba(0,0,0,0.12);
   margin-top: 80px;
+  background-color: #212121;
+  color: rgba(255,255,255,0.7);
 }
 
 .spacer {
@@ -323,7 +389,7 @@ button#ToggleSidebar_Button {
     PAGES
 \*------------------------------------*/
 
-h1 {
+div.wrapper.default-wrapper h1 {
   padding: 0 16px 0.67em;
   background: #546E7A;
   color: rgba(255,255,255,1);
@@ -732,6 +798,21 @@ ul li.build-list-item .material-icons {
     RESPONSIVE
 \*------------------------------------*/
 
+@media only screen and (max-width:768px) {
+  #WelcomeHero div.hero-content {
+    flex-direction: column;
+  }
+  #WelcomeHero div.hero-content div.hero-text,
+  #WelcomeHero div.hero-content div.hero-actions {
+    width: 100%;
+  }
+  #WelcomeHero div.hero-content div.hero-actions {
+    margin-bottom: 24px;
+  }
+  #WelcomeHero div.hero-text p {
+    margin-bottom: 2em;
+  }
+}
 @media only screen and (min-width:320px) {
 
 }
@@ -739,7 +820,12 @@ ul li.build-list-item .material-icons {
 
 }
 @media only screen and (min-width:768px) {
-
+  #WelcomeHero div.hero-content {
+    margin: 5%;
+  }
+  #WelcomeHero div.hero-content div.hero-text h1 {
+    font-size: 3em;
+  }
 }
 @media only screen and (min-width:1024px) {
 

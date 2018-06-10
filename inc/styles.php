@@ -32,7 +32,7 @@ function eviratec_web_enqueue_styles () {
       "eviratec-web",
       get_stylesheet_uri(),
       array(),
-      "1.0.11"
+      "1.0.12"
     );
   }
 }

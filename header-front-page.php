@@ -27,10 +27,10 @@
   <body <?php body_class(); ?>>
 
     <!-- wrapper -->
-    <div class="wrapper default-wrapper">
+    <div class="wrapper">
 
       <!-- header -->
-      <header class="header clear" role="banner">
+      <header class="header clear front-page" role="banner">
         <div class="toolbar">
           <?php get_template_part( 'parts/common/toolbar' ); ?>
         </div>
