@@ -77,8 +77,21 @@ function datastudio_build_web_service_as_spec_openapi_v3_output ( $output, $web_
           $operation_type = get_field( 'operation_type', $operation_id );
           $operation_name = get_field( 'operation_name', $operation_id );
           $output['paths'][$path_uri][] = [
+            'summary' => '',
             'method' => $operation_type,
             'operationId' => $operation_name,
+            'responses' => [
+              '200' => [
+                'description' => '',
+                'content' => [
+                  'application/json' => [
+                    'schema' => [
+                      '$ref' => '#/definitions/'
+                    ]
+                  ]
+                ]
+              ]
+            ]
           ];
         }
       }

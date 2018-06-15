@@ -719,6 +719,13 @@ ul li.build-list-item .material-icons {
   color: rgba(0,0,0,0.38);
 }
 
+pre#SourceCode {
+  background: #242424;
+  color: rgba(255,255,255,0.7);
+  padding: 16px;
+  font-size: 1.2em;
+}
+
 
 /*------------------------------------*\
     COMMENTS
