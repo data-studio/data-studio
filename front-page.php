@@ -52,7 +52,6 @@
       <div class="hero-actions">
         <div class="spacer"></div>
         <div class="try-now-actions">
-          <h2>Try it now</h2>
           <div class="actions">
             <a href="/apps/"
               class="call-to-action primary-action">
