@@ -15,6 +15,7 @@
           Open-source software development tool.
         </p>
       </div>
+      <?php if ( ! is_user_logged_in() ) : ?>
       <div class="hero-actions">
         <div class="spacer"></div>
         <div class="try-now-actions">
@@ -47,6 +48,25 @@
           </div>
         </div>
       </div>
+      <?php else : ?>
+      <div class="hero-actions">
+        <div class="spacer"></div>
+        <div class="try-now-actions">
+          <h2>Try it now</h2>
+          <div class="actions">
+            <a href="/apps/"
+              class="call-to-action primary-action">
+              <span class="spacer"></span>
+              <span>My Apps</span>
+              <span class="material-icons">
+                chevron_right
+              </span>
+              <span class="spacer"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <?php endif; ?>
       <div class="spacer"></div>
     </div>
   </div>
@@ -56,7 +76,11 @@
     <section class="front-page">
 
       <div class="login">
+      <?php if ( ! is_user_logged_in() ) : ?>
         <h2 id="existing-users">Existing users</h2>
+      <?php else : ?>
+        <h2 id="existing-users">Welcome back!</h2>
+      <?php endif; ?>
 
         <div class="page-section-wrapper">
           <?php echo do_shortcode( '[wppb-login]' ); ?>
