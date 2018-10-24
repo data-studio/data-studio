@@ -12,6 +12,7 @@
       <select id="OutputFormat"
         name="OutputFormat">
         <option value="application/json" selected>JSON</option>
+        <option value="application/x-yaml">YAML</option>
       </select>
     </div>
   </div>
