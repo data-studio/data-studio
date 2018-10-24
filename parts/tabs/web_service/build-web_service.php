@@ -55,6 +55,10 @@
     $formEl: $('form#BuildWebService'),
     onSuccess: function ( res ) {
       $( '#BuildWebServiceForm' ).hide();
+      if ( 'string' === typeof res ) {
+        $( 'pre#SourceCode' ).text( res );
+        return;
+      }
       $( 'pre#SourceCode' ).text( JSON.stringify( res, undefined, '  ' ) );
     },
   });
