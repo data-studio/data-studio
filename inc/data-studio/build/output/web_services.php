@@ -183,11 +183,22 @@ function datastudio_build_web_service_as_spec_openapi_v3_output ( $output, $web_
       }
     }
   }
+  if ( 'application/json' === $_REQUEST['args']['OutputFormat'] ) {
+    return json_encode( $output );
+  }
+  if ( 'application/x-yaml' === $_REQUEST['args']['OutputFormat'] ) {
+    return yaml_emit( $output ); // requires php yaml extension
+  }
   return json_encode( $output );
-  // return yaml_emit( $output ); // requires php yaml extension
 }
 
 function datastudio_build_web_service_as_spec_openapi_v3_output_content_type ( $output, $web_service_id ) {
+  if ( 'application/json' === $_REQUEST['args']['OutputFormat'] ) {
+    return 'application/json';
+  }
+  if ( 'application/x-yaml' === $_REQUEST['args']['OutputFormat'] ) {
+    return 'application/x-yaml';
+  }
   return 'application/json';
 }
 
