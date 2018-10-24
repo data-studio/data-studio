@@ -43,6 +43,22 @@ add_filter(
   3
 );
 
+class DSOAPIOTools {
+  public static function pathParametersIn ( $uri ) {
+    $path_params = [];
+    $path_parts = explode( "/", $uri );
+    if ( count( $path_parts ) > 0 ) {
+      foreach ( $path_parts as $path_part ) {
+        $path_part_is_param = '{' === substr( $path_part, 0, 1 );
+        if ($path_part_is_param) {
+          $path_params[] = substr( $path_part, 1, -1);
+        }
+      }
+    }
+    return $path_params;
+  }
+}
+
 function datastudio_build_web_service_as_spec_openapi_v3_output ( $output, $web_service_id ) {
   $output = array(
     'info' => [
@@ -59,8 +75,59 @@ function datastudio_build_web_service_as_spec_openapi_v3_output ( $output, $web_
       ],
       'version' => '0.0.1'
     ],
-    'paths' => [],
-    'definitions' => [],
+    'paths' => [
+      '/status' => [
+        'get' => [
+          'summary' => '',
+          'operationId' => '_getServiceStatus',
+          'responses' => [
+            '200' => [
+              'description' => 'OK',
+              'schema' => [
+                'type' => 'array',
+                'items' => [
+                  '$ref' => '#/definitions/StatusObject'
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ],
+    'definitions' => [
+      'DefaultResponseObject' => [
+        'type' => 'object',
+        'properties' => [
+          'ID' => [
+            'type' => 'string',
+            'format' => 'uuid',
+            'description' => 'Unique identifier for object',
+            'example' => '869fb14f-a6d1-47cf-8dbd-36c88b19f0fa'
+          ]
+        ]
+      ],
+      'StatusObject' => [
+        'type' => 'object',
+        'properties' => [
+          'ID' => [
+            'type' => 'string',
+            'format' => 'uuid',
+            'description' => 'Unique identifier for object',
+            'example' => '869fb14f-a6d1-47cf-8dbd-36c88b19f0fa'
+          ]
+        ]
+      ],
+      'SubmissionObject' => [
+        'type' => 'object',
+        'properties' => [
+          'AuthorName' => [
+            'type' => 'string',
+            'description' => 'Submission author name',
+            'example' => 'John Smith'
+          ]
+        ]
+      ]
+    ]
   );
   $paths = DataStudioQuery::getPathsByWebService( $web_service_id );
   if ( $paths->have_posts() ) {
@@ -69,6 +136,19 @@ function datastudio_build_web_service_as_spec_openapi_v3_output ( $output, $web_
       $path_id = get_the_ID();
       $path_uri = get_field( 'path_uri', $path_id );
       $output['paths'][$path_uri] = [];
+      $path_parameters = DSOAPIOTools::pathParametersIn( $path_uri );
+      if ( count( $path_parameters ) > 0 ) {
+        $output['paths'][$path_uri]['parameters'] = [];
+        foreach ( $path_parameters as $param_name ) {
+          $output['paths'][$path_uri]['parameters'][] = [
+            'in' => 'path',
+            'name' => $param_name,
+            'type' => 'string',
+            'description' => '',
+            'required' => true
+          ];
+        }
+      }
       $operations = DataStudioQuery::getOperationsByPath( $path_id );
       if ( $operations->have_posts() ) {
         while ( $operations->have_posts() ) {
@@ -76,28 +156,35 @@ function datastudio_build_web_service_as_spec_openapi_v3_output ( $output, $web_
           $operation_id = get_the_ID();
           $operation_type = get_field( 'operation_type', $operation_id );
           $operation_name = get_field( 'operation_name', $operation_id );
-          $output['paths'][$path_uri][] = [
+          $output['paths'][$path_uri][strtolower($operation_type)] = [
             'summary' => '',
-            'method' => $operation_type,
             'operationId' => $operation_name,
             'responses' => [
               '200' => [
-                'description' => '',
-                'content' => [
-                  'application/json' => [
-                    'schema' => [
-                      '$ref' => '#/definitions/'
-                    ]
-                  ]
+                'description' => 'OK',
+                'schema' => [
+                  '$ref' => '#/definitions/DefaultResponseObject'
                 ]
               ]
             ]
           ];
+          if ( 'post' === strtolower($operation_type) ) {
+            $output['paths'][$path_uri][strtolower($operation_type)]['parameters'] = [
+              [
+                'in' => 'body',
+                'name' => 'submission',
+                'schema' => [
+                  '$ref' => '#/definitions/SubmissionObject'
+                ]
+              ]
+            ];
+          }
         }
       }
     }
   }
   return json_encode( $output );
+  // return yaml_emit( $output ); // requires php yaml extension
 }
 
 function datastudio_build_web_service_as_spec_openapi_v3_output_content_type ( $output, $web_service_id ) {
